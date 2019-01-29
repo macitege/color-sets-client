@@ -1,7 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-
+body {
+  height: 100vh;
+  margin-top: 60px;
+}
 
 .dropdown-toggle {
   &::after {
@@ -31,4 +34,17 @@
   margin: 2px 0;
   transform: translateY(-6px);
   width: 20px;
+}
+
+.message {
+  align-items: center;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 100vw;
+}
+
+.sign-up-failure{
+  display: inline-block;
+  margin: 0 0 0 15px;
 }
