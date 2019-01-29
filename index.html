@@ -12,6 +12,58 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+<!-- HEADER|ACCOUNT DROPDOWN -->
+      <header>
+
+        <nav class="navbar fixed-top navbar-light bg-light">
+          <a class="navbar-brand" href="./index.html">Color Sets Generator</a>
+<!-- BEFORE SIGN-IN ELEMENT -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sign In
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <form class="px-4 py-3">
+                <div class="form-group">
+                  <label for="exampleDropdownFormEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="exampleDropdownFormPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                    <label class="form-check-label" for="dropdownCheck">
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </form>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">New around here? Sign up</a>
+            </div>
+          </div>
+<!-- AFTER SIGN-IN ELEMENTS -->
+          <div class="btn-group" hidden>
+            <button type="button" class="btn btn-secondary dropdown-toggle round" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+              <div class="hamburger"></div>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <button class="dropdown-item text-black-50" type="button">Color Palettes</button>
+              <button class="dropdown-item text-black-50" type="button">Change Passsord</button>
+              <button class="dropdown-item text-black-50" type="button">Log Out</button>
+            </div>
+          </div>
+
+        </nav>
+
+      </header>
+      <section class="selections">
+
+      </section>
+
     </body>
 </html>
