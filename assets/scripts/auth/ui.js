@@ -3,7 +3,7 @@
 const store = require('../store')
 
 const onSignUpSuccess = () => {
-  $('#message').text('Sign up successful!')
+  $('#message').text('Sign up successful!').attr('class', 'alert alert-success')
   $('#message').fadeIn()
   setTimeout(() => { $('#message').fadeOut() }, 2000)
   $('#signUpForm').trigger('reset')
@@ -18,7 +18,7 @@ const onSignUpFailure = () => {
 
 const onSignInSuccess = (response) => {
   store.user = response.user
-  $('#message').text('Sign in successful!')
+  $('#message').text('Sign in successful!').attr('class', 'alert alert-success')
   $('#message').fadeIn()
   setTimeout(() => { $('.alert').fadeOut() }, 2000)
   $('#signInForm').trigger('reset')
@@ -43,9 +43,22 @@ const onSignOutSuccess = () => {
 }
 
 const onSignOutFailure = () => {
-
+  $('#message').text('Sign out failed!').attr('class', 'alert alert-danger')
 }
 
+const onChangePwSuccess = () => {
+  $('#message').text('Password is changed!').attr('class', 'alert alert-success')
+  $('#message').fadeIn()
+  setTimeout(() => { $('.alert').fadeOut() }, 2000)
+  $('#changePwForm').trigger('reset')
+  $('#changePwModalClose').trigger('click')
+}
+
+const onChangePwFailure = () => {
+  $('#changePwForm').trigger('reset')
+  $('#changePwFailureMessage').fadeIn()
+  setTimeout(() => { $('#signInFailureMessage').fadeOut() }, 5000)
+}
 
 module.exports = {
   onSignUpSuccess,
@@ -53,5 +66,7 @@ module.exports = {
   onSignInSuccess,
   onSignInFailure,
   onSignOutSuccess,
-  onSignOutFailure
+  onSignOutFailure,
+  onChangePwSuccess,
+  onChangePwFailure
 }

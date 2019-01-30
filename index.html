@@ -50,7 +50,7 @@
             </button>
             <div class="dropdown-menu dropdown-menu-right">
               <button id="colorPalettes" class="dropdown-item text-black-50" type="button">Color Palettes</button>
-              <button id="changePassword" class="dropdown-item text-black-50" type="button">Change Passsord</button>
+              <button id="changePassword" class="dropdown-item text-black-50" type="button" data-toggle="modal" data-target="#changePwModal">Change Passsord</button>
               <button id="signout" class="dropdown-item text-black-50" type="button">Sign Out</button>
             </div>
           </div>
@@ -61,7 +61,7 @@
 
 <!-- MAIN-AREA -->
       <div class="message">
-        <div id="message" class="alert alert-success" role="alert">
+        <div id="message" class="" role="alert">
 
         </div>
       </div>
@@ -105,6 +105,37 @@
                     </div>
                   </div>
                 </div>
+
+<!-- CHANGE PASSWORD MODAL -->
+                <div class="modal fade" id="changePwModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalTitle" aria-hidden="true">
+
+
+                  <div class="modal-dialog modal-dialog-sm" role="document">
+                    <div class="modal-content">
+                      <div class="modal-body">
+<!-- FORM -->
+                        <form id="changePwForm">
+                          <div class="form-group">
+                            <button id="changePwModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <br/>
+                            <label for="exampleDropdownFormEmail2">Change Password</label>
+                            <div class="change-pw-failure-message">
+                              <div id="changePwFailureMessage">
+                                <span class="badge badge-danger">Password change is failed.</span>
+                              </div>
+                            </div>
+                            <input name="passwords[old]" type="password" class="form-control" placeholder="Old Password">
+                            <input name="passwords[new]" type="password" class="form-control" placeholder="New Password">
+                          </div>
+                          <button id="changePwButton" type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 
 
     </body>
