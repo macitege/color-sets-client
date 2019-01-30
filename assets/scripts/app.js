@@ -8,6 +8,9 @@
 
 const authEvents = require('./auth/events')
 $('.alert').hide()
+$('#accountArea').hide()
+$('#signInFailureMessage').hide()
 $(() => {
   authEvents.addHandlers()
+
 })

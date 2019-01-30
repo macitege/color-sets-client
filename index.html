@@ -18,45 +18,40 @@
         <nav class="navbar fixed-top navbar-light bg-light">
           <a class="navbar-brand" href="./index.html">Color Sets Generator</a>
 <!-- BEFORE SIGN-IN ELEMENT -->
-          <div class="btn-group">
+          <div id="authArea" class="btn-group">
             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Sign In
+            Login
             </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <form class="px-4 py-3">
-                <div class="form-group">
-                  <label for="exampleDropdownFormEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                </div>
-                <div class="form-group">
-                  <label for="exampleDropdownFormPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                    <label class="form-check-label" for="dropdownCheck">
-                      Remember me
-                    </label>
+            <button style="margin-left: 2px; border-radius: 5px;" class="btn sign-up-button btn-dark" data-toggle="modal" type="button" data-target="#signUpModal" aria-haspopup="true" aria-expanded="false">
+            Signup
+            </button>
+            <div id="signInDropdown" class="dropdown-menu dropdown-menu-right">
+              <form id="signInForm" class="px-4 py-3">
+
+                <div class="sign-in-failure-message">
+                  <div id="signInFailureMessage">
+                    <span class="badge badge-danger">Sign in unsuccessful.</span>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+
+                  <input type="email" name="credentials[email]" class="form-control" placeholder="Email">
+                  <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
+                <button type="submit" class="btn btn-primary btn-dark">Login</button>
               </form>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" type="button" data-target="#signUpModal">New around here? Sign up</a>
             </div>
           </div>
 
 
 <!-- AFTER SIGN-IN ELEMENTS -->
-          <div class="btn-group" hidden>
+          <div id="accountArea" class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle round" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-              <div class="hamburger"></div>
+              <div class="hamburger">
+              </div>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <button class="dropdown-item text-black-50" type="button">Color Palettes</button>
-              <button class="dropdown-item text-black-50" type="button">Change Passsord</button>
-              <button class="dropdown-item text-black-50" type="button">Log Out</button>
+              <button id="colorPalettes" class="dropdown-item text-black-50" type="button">Color Palettes</button>
+              <button id="changePassword" class="dropdown-item text-black-50" type="button">Change Passsord</button>
+              <button id="signout" class="dropdown-item text-black-50" type="button">Sign Out</button>
             </div>
           </div>
 
@@ -65,9 +60,9 @@
       </header>
 
 <!-- MAIN-AREA -->
-      <div id="message" class="message">
-        <div id="signInSuccess" class="alert alert-success" role="alert">
-          Sign up successful!
+      <div class="message">
+        <div id="message" class="alert alert-success" role="alert">
+
         </div>
       </div>
       <section class="selections">
@@ -82,7 +77,7 @@
 
 
 
-                  <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-dialog modal-dialog-sm" role="document">
                     <div class="modal-content">
                       <div class="modal-body">
 <!-- FORM -->

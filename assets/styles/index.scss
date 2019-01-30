@@ -48,3 +48,10 @@ body {
   display: inline-block;
   margin: 0 0 0 15px;
 }
+
+.sign-in-failure-message {
+  height: 20px;
+  width: 100px;
+  margin-bottom: 5px;
+  transform: translateX(-13px);
+}
