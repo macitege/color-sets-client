@@ -30,7 +30,7 @@ const onSignInSuccess = (response) => {
 const onSignInFailure = () => {
   $('#signInForm').trigger('reset')
   $('#signInFailureMessage').fadeIn()
-  setTimeout(() => { $('#signInFailureMessage').fadeOut() }, 5000)
+  setTimeout(() => { $('#signInFailureMessage').fadeOut() }, 2000)
 }
 
 const onSignOutSuccess = () => {
@@ -57,7 +57,7 @@ const onChangePwSuccess = () => {
 const onChangePwFailure = () => {
   $('#changePwForm').trigger('reset')
   $('#changePwFailureMessage').fadeIn()
-  setTimeout(() => { $('#signInFailureMessage').fadeOut() }, 5000)
+  setTimeout(() => { $('#signInFailureMessage').fadeOut() }, 2000)
 }
 
 module.exports = {

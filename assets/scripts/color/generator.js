@@ -1,5 +1,7 @@
 'use strict'
 
+const store = require('../store')
+
 // HISTORY HOLDS PREVIOUSLY GENERATED COLORS (MAX.30)
 const history = []
 // THE MOST RECENT COLOR SET GENERATED
@@ -14,10 +16,10 @@ const colorSet = {
 function makeColors () {
   for (let i = 1; i <= 5; i++) {
     // '#'+Math.floor(Math.random()*16777215).toString(16);
-    let colorHEX = '#' + Math.floor(Math.random() * 16777215).toString(16)
-    // while (colorHEX.length < 7) {
-    //   colorHEX += (Math.random()).toString(16).substr(-6).substr(-1)
-    // }
+    let colorHEX = '#'
+    while (colorHEX.length < 7) {
+      colorHEX += (Math.random()).toString(16).substr(-6).substr(-1)
+    }
     colorSet['color' + i] = colorHEX
   }
   $('#first-color').css('background-color', colorSet['color1'])
@@ -32,13 +34,13 @@ function makeColors () {
 }
 
 function prepareForAPI () {
-  return `{
-    "color": {
-      "hex": "${colorSet['color1']}-${colorSet['color2']}-${colorSet['color3']}-${colorSet['color4']}-${colorSet['color5']}",
-      "rgba": "null",
-      "hsla": "null"
-    }
-  }`
+  const data = {}
+  data.color = {}
+  data.color.hex = `${colorSet['color1']}-${colorSet['color2']}-${colorSet['color3']}-${colorSet['color4']}-${colorSet['color5']}`
+  data.color.rgba = 'undefined'
+  data.color.hsla = 'undefined'
+  data.color['user_id'] = store.user.id
+  return data
 }
 
 module.exports = {
