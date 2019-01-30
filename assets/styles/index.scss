@@ -5,8 +5,8 @@ $color-size-height: $color-size-width;
 $color-size: $color-size-width;
 
 @mixin colors {
-  background-color: #000;
-  border: 1px solid grey;
+
+  // border: 1px solid grey;
   margin: 0;
   min-height: $color-size-height;
   transition: .5s ease;
@@ -14,8 +14,21 @@ $color-size: $color-size-width;
 }
 
 body {
-  height: calc(calc(100vh) - 60px);
+  height: calc(calc(100vh) - 100px);
   margin-top: 60px;
+}
+
+.options {
+  background-color: #fdfdfd;
+  display: flex;
+  height: 40px;
+  width: 100%;
+
+  .save-button {
+    align-self: flex-end;
+    margin: 2px;
+    position: relative;
+  }
 }
 
 .dropdown-toggle {
@@ -78,7 +91,7 @@ body {
   height: 100%;
   margin-top: -100px;
   width: 100vw;
-  z-index: -2;
+  z-index: -3;
 
 
   .colors-wrapper {

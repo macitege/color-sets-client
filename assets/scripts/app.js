@@ -7,10 +7,14 @@
 // require('./example')
 
 const authEvents = require('./auth/events')
+const colorGenerator = require('./color/generator')
+const colorEvents = require('./color/events')
+
 $('.alert').hide()
 $('#accountArea').hide()
 $('#signInFailureMessage, #changePwFailureMessage').hide()
 $(() => {
+  colorGenerator.makeColors()
   authEvents.addHandlers()
-
+  colorEvents.addHandlers()
 })

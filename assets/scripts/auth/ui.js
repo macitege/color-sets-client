@@ -3,7 +3,7 @@
 const store = require('../store')
 
 const onSignUpSuccess = () => {
-  $('#message').text('Sign up successful!').attr('class', 'alert alert-success')
+  $('#message').text('Sign up successful!').attr('class', 'alert alert-success shadow-lg')
   $('#message').fadeIn()
   setTimeout(() => { $('#message').fadeOut() }, 2000)
   $('#signUpForm').trigger('reset')
@@ -18,7 +18,7 @@ const onSignUpFailure = () => {
 
 const onSignInSuccess = (response) => {
   store.user = response.user
-  $('#message').text('Sign in successful!').attr('class', 'alert alert-success')
+  $('#message').text('Sign in successful!').attr('class', 'alert alert-success shadow-lg')
   $('#message').fadeIn()
   setTimeout(() => { $('.alert').fadeOut() }, 2000)
   $('#signInForm').trigger('reset')
@@ -35,7 +35,7 @@ const onSignInFailure = () => {
 
 const onSignOutSuccess = () => {
   store.user = null
-  $('#message').text('Successfully signed out!').attr('class', 'alert alert-warning')
+  $('#message').text('Successfully signed out!').attr('class', 'alert alert-warning shadow-lg')
   $('#message').fadeIn()
   setTimeout(() => { $('#message').fadeOut() }, 2000)
   $('#accountArea').hide()
@@ -47,7 +47,7 @@ const onSignOutFailure = () => {
 }
 
 const onChangePwSuccess = () => {
-  $('#message').text('Password is changed!').attr('class', 'alert alert-success')
+  $('#message').text('Password is changed!').attr('class', 'alert alert-success shadow-lg')
   $('#message').fadeIn()
   setTimeout(() => { $('.alert').fadeOut() }, 2000)
   $('#changePwForm').trigger('reset')
