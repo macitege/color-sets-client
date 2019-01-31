@@ -21,6 +21,7 @@ const onCreate = (event) => {
 
 const addHandlers = () => {
   $('#saveButton').on('click', onCreate)
+  $('#generateButton').on('click', colorGenerator.makeColors)
 
   // MAKES SPACE BAR THE GENERATOR BUTTON
   $('body').on('keyup', (event) => {
