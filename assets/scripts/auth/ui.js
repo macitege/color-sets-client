@@ -35,6 +35,7 @@ const onSignInFailure = () => {
 }
 
 const onSignOutSuccess = () => {
+  $('#palettesClose').trigger('click')
   store.user = null
   $('#message').text('Successfully signed out!').attr('class', 'alert alert-warning shadow-lg')
   $('#message').fadeIn()

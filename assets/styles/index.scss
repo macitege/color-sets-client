@@ -27,6 +27,7 @@ body {
 
 .sidebar {
   background-color: #111;
+  box-shadow: rgba(0, 0, 0, 0.5) 4px 0px 10px 0;
   color: #d2d2d2;
   height: 100%;
   left: 0;
@@ -195,16 +196,38 @@ body {
 
 }
 
-.content {
-  display: flex;
-  height: 25px;
-  width: 125px;
-  color: white;
-  z-index: 10;
+.color-section {
+  border: 1px solid #a2a2a2;
+  border-radius: 5px;
+  margin: 10px 2px;
 
-  .small-square {
+  .delete-palette,
+  .edit-palette {
+    border: 1px dotted #d2d2d2;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0 5px;
+  }
+
+  .content {
+    color: white;
+    display: flex;
+    justify-content: center;
     height: 25px;
-    width: 25px;
-    z-index: 11;
+    margin-bottom: 20px;
+    width: 100%;
+    z-index: 10;
+
+    .inner-content {
+      display: flex;
+      margin-bottom: 20px;
+
+      .small-square {
+        border-radius: 5px;
+        height: 35px;
+        width: 35px;
+        z-index: 11;
+      }
+    }
   }
 }

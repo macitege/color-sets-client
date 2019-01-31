@@ -24,7 +24,18 @@ const getColors = () => {
   })
 }
 
+const deleteColor = (id) => {
+  return $.ajax({
+    url: config.apiUrl + '/colors/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   createColor,
-  getColors
+  getColors,
+  deleteColor
 }
