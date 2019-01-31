@@ -20,7 +20,7 @@ function makeColors () {
     while (colorHEX.length < 7) {
       colorHEX += (Math.random()).toString(16).substr(-6).substr(-1)
     }
-    colorSet['color' + i] = colorHEX.toUpperCase()
+    colorSet['color' + i] = colorHEX
   }
   $('#first-color').css('background-color', colorSet['color1'])
   $('#hexCode1').val(colorSet['color1'])
@@ -54,19 +54,19 @@ const addHandlers = () => {
     $('#first-color').css('background-color', newColor)
   })
   $('#hexCode2').on('change', () => {
-    const newColor = $('#hexCode1').val()
+    const newColor = $('#hexCode2').val()
     $('#second-color').css('background-color', newColor)
   })
   $('#hexCode3').on('change', () => {
-    const newColor = $('#hexCode1').val()
+    const newColor = $('#hexCode3').val()
     $('#third-color').css('background-color', newColor)
   })
   $('#hexCode4').on('change', () => {
-    const newColor = $('#hexCode1').val()
+    const newColor = $('#hexCode4').val()
     $('#fourth-color').css('background-color', newColor)
   })
   $('#hexCode5').on('change', () => {
-    const newColor = $('#hexCode1').val()
+    const newColor = $('#hexCode5').val()
     $('#fifth-color').css('background-color', newColor)
   })
 }

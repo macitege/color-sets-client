@@ -14,6 +14,17 @@ const createColor = (data) => {
   })
 }
 
+const getColors = () => {
+  return $.ajax({
+    url: config.apiUrl + '/colors',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
-  createColor
+  createColor,
+  getColors
 }

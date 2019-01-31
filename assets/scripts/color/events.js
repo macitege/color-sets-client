@@ -13,15 +13,22 @@ const onCreate = (event) => {
   }
   event.preventDefault()
   const data = colorGenerator.prepareForAPI()
-  console.log(data)
   api.createColor(data)
     .then(ui.onCreateColorSuccess)
     .catch(ui.onCreateColorFailure)
 }
 
+const onGetColors = (event) => {
+  event.preventDefault()
+  api.getColors()
+    .then(ui.onGetColorsSuccess)
+    .catch(ui.onGetColorsFailure)
+}
+
 const addHandlers = () => {
   $('#saveButton').on('click', onCreate)
   $('#generateButton').on('click', colorGenerator.makeColors)
+  $('#palettesButton').on('click', onGetColors)
 
   // MAKES SPACE BAR THE GENERATOR BUTTON
   $('body').on('keyup', (event) => {

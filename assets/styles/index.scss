@@ -194,3 +194,17 @@ body {
   }
 
 }
+
+.content {
+  display: flex;
+  height: 25px;
+  width: 125px;
+  color: white;
+  z-index: 10;
+
+  .small-square {
+    height: 25px;
+    width: 25px;
+    z-index: 11;
+  }
+}
