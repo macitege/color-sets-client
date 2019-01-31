@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Rainbow's BFF</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -19,8 +19,8 @@
           <a class="navbar-brand" href="./index.html">&smashp; &copf;&oopf;&lopf;&oopf;&ropf;&sopf;</a>
 <!-- BEFORE SIGN-IN ELEMENT -->
           <div id="authArea" class="btn-group">
-            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login
+            <button id="signInButton" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login &#9776;
             </button>
             <button style="margin-left: 2px; border-radius: 5px;" class="btn sign-up-button btn-dark" data-toggle="modal" type="button" data-target="#signUpModal" aria-haspopup="true" aria-expanded="false">
             Signup
@@ -80,17 +80,42 @@
       </div>
 
 <!-- MAIN-AREA -->
-
+    <!-- SIDEBAR -->
+      <div id="sidebar" class="sidebar">
+        <a id="palettesClose" class="palettes-close">×</a>
+        <div id="palettesWrapper" class="palettes-wrapper">
+          <h3> Saved Palettes </h3>
+          <div class="divider"></div>
+        </div>
+      </div>
 
       <section class="colors">
         <div class="colors-wrapper">
-          <div id="first-color" class="first-color">  <span>Hello</span></div>
+          <div id="first-color" class="first-color"></div>
           <div id="second-color" class="second-color"></div>
           <div id="third-color" class="third-color"></div>
           <div id="fourth-color" class="fourth-color"></div>
           <div id="fifth-color" class="fifth-color"></div>
         </div>
       </section>
+
+      <div class="color-codes-wrapper">
+        <div id="colorCodes" class="color-codes">
+         <input id="hexCode1" class="hex-code" value="#000000">
+        </div>
+        <div id="colorCodes" class="color-codes">
+         <input id="hexCode2" class="hex-code" value="#000000">
+        </div>
+        <div id="colorCodes" class="color-codes">
+         <input id="hexCode3" class="hex-code" value="#000000">
+        </div>
+        <div id="colorCodes" class="color-codes">
+         <input id="hexCode4" class="hex-code" value="#000000">
+        </div>
+        <div id="colorCodes" class="color-codes">
+         <input id="hexCode5" class="hex-code" value="#000000">
+        </div>
+      </div>
 
 
 

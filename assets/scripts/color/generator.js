@@ -20,13 +20,18 @@ function makeColors () {
     while (colorHEX.length < 7) {
       colorHEX += (Math.random()).toString(16).substr(-6).substr(-1)
     }
-    colorSet['color' + i] = colorHEX
+    colorSet['color' + i] = colorHEX.toUpperCase()
   }
   $('#first-color').css('background-color', colorSet['color1'])
+  $('#hexCode1').val(colorSet['color1'])
   $('#second-color').css('background-color', colorSet['color2'])
+  $('#hexCode2').val(colorSet['color2'])
   $('#third-color').css('background-color', colorSet['color3'])
+  $('#hexCode3').val(colorSet['color3'])
   $('#fourth-color').css('background-color', colorSet['color4'])
+  $('#hexCode4').val(colorSet['color4'])
   $('#fifth-color').css('background-color', colorSet['color5'])
+  $('#hexCode5').val(colorSet['color5'])
   history.push(colorSet)
   if (history.length > 30) {
     history.shift()
@@ -43,7 +48,31 @@ function prepareForAPI () {
   return data
 }
 
+const addHandlers = () => {
+  $('#hexCode1').on('change', () => {
+    const newColor = $('#hexCode1').val()
+    $('#first-color').css('background-color', newColor)
+  })
+  $('#hexCode2').on('change', () => {
+    const newColor = $('#hexCode1').val()
+    $('#second-color').css('background-color', newColor)
+  })
+  $('#hexCode3').on('change', () => {
+    const newColor = $('#hexCode1').val()
+    $('#third-color').css('background-color', newColor)
+  })
+  $('#hexCode4').on('change', () => {
+    const newColor = $('#hexCode1').val()
+    $('#fourth-color').css('background-color', newColor)
+  })
+  $('#hexCode5').on('change', () => {
+    const newColor = $('#hexCode1').val()
+    $('#fifth-color').css('background-color', newColor)
+  })
+}
+
 module.exports = {
   makeColors,
-  prepareForAPI
+  prepareForAPI,
+  addHandlers
 }

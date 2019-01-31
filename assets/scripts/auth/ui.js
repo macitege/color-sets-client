@@ -25,6 +25,7 @@ const onSignInSuccess = (response) => {
   $('#signInDropdown').attr('class', 'dropdown-menu dropdown-menu-right')
   $('#authArea').hide()
   $('#accountArea').fadeIn()
+  $('#saveButton, #palettesButton').fadeIn()
 }
 
 const onSignInFailure = () => {
@@ -37,9 +38,16 @@ const onSignOutSuccess = () => {
   store.user = null
   $('#message').text('Successfully signed out!').attr('class', 'alert alert-warning shadow-lg')
   $('#message').fadeIn()
-  setTimeout(() => { $('#message').fadeOut() }, 2000)
   $('#accountArea').hide()
   $('#authArea').fadeIn()
+  $('#saveButton, #palettesButton').hide()
+  setTimeout(() => { $('#message').fadeOut() }, 2000)
+  setTimeout(() => {
+    $('#message')
+      .html('Please <a class="alert-link">sign in</a> to save you own color palettes!')
+      .attr('class', 'alert alert-warning shadow-lg')
+      .fadeIn()
+  }, 3000)
 }
 
 const onSignOutFailure = () => {
