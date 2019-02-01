@@ -20,7 +20,7 @@ function makeColors () {
     while (colorHEX.length < 7) {
       colorHEX += (Math.random()).toString(16).substr(-6).substr(-1)
     }
-    colorSet['color' + i] = colorHEX
+    colorSet['color' + i] = colorHEX.toUpperCase()
   }
   $('#first-color').css('background-color', colorSet['color1'])
   $('#hexCode1').val(colorSet['color1'])

@@ -3,11 +3,11 @@
 <section id="{{color.id}}" class="color-section">
 
   <h4> Colors
-    <span id="editPalette" class="edit-palette" data-id="{{color.id}}">✎</span>
-    <span id="deletePalette" class="delete-palette" data-id="{{color.id}}">&otimes;</span>
+    <span id="editPalette" class="edit-palette" data-id="{{color.id}}" data-toggle="modal" data-target="#editColor" title="Edit & Update">✎</span>
+    <span id="deletePalette" class="delete-palette" data-id="{{color.id}}" data-toggle="modal" data-target="#deleteColorConfirm" title="Delete Palette">&otimes;</span>
   </h4>
   <p><em>User: {{color.user.email}}</em></p>
-  <div class="content">
+  <div id="contentOf{{color.id}}" class="content">
     <div class="inner-content">
       <div class="small-square" style="background-color:{{colorify color 0}}"></div>
       <div class="small-square" style="background-color:{{colorify color 1}}"></div>

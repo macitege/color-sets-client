@@ -28,7 +28,7 @@ const onCreate = (event) => {
 
 const onDelete = (event) => {
   event.preventDefault()
-  const id = event.target.dataset.id
+  const id = store.colorID
 
   api.deleteColor(id)
     .then(ui.onDeleteColorSuccess(id))
@@ -36,13 +36,31 @@ const onDelete = (event) => {
     .catch(ui.onDeleteColorFailure)
 }
 
+const onEdit = () => {
+  const id = store.colorID
+  const victim = `#contentOf${id}`
+  const contentToEdit = $(victim).html()
+  console.log(contentToEdit)
+  $('#editModal').html(`
+    <section class="color-section-edit">
+    ${contentToEdit.toString()}
+    </section>
+    <div id="editorInputWrap" class="editor-input-wrap"></div>
+    `)
+}
+
 const addHandlers = () => {
   $('#saveButton').on('click', onCreate)
   $('#generateButton').on('click', colorGenerator.makeColors)
   $('#palettesButton').on('click', onGetColors)
+  $('#deletePaletteConfirm').on('click', onDelete)
 
   $('body').on('click', '#deletePalette', (event) => {
-    onDelete(event)
+    store.colorID = event.target.dataset.id
+  })
+  $('body').on('click', '#editPalette', (event) => {
+    store.colorID = event.target.dataset.id
+    onEdit()
   })
 
   // MAKES SPACE BAR THE GENERATOR BUTTON

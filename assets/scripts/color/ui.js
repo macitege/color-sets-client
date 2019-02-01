@@ -30,7 +30,8 @@ const onGetColorsFailure = () => {
 
 const onDeleteColorSuccess = (id) => {
   $('#' + id).remove()
-  $('#message').text('Deleted').attr('class', 'alert alert-success shadow-lg')
+  $('#deleteColorConfirm').modal('hide')
+  $('#message').text('Deleted!').attr('class', 'alert alert-success shadow-lg')
   $('#message').fadeIn()
   setTimeout(() => { $('#message').fadeOut() }, 2000)
 }

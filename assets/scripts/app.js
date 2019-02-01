@@ -41,4 +41,9 @@ $(() => {
   $('#palettesClose').on('click', () => {
     $('#sidebar').css('width', '0px')
   })
+
+  // ENABLE TOOL TIPS
+  $('body').on('mouseover', '.opt', () => {
+    $('[data-toggle="edit"]', '[data-toggle="destroy"]').tooltip()
+  })
 })
