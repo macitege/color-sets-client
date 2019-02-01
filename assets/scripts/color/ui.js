@@ -43,6 +43,9 @@ const onDeleteColorFailure = () => {
   setTimeout(() => { $('#message').fadeOut() }, 2000)
 }
 
+// onUpdateSuccess
+// onUpdateFailure
+
 module.exports = {
   onCreateColorSuccess,
   onCreateColorFailure,

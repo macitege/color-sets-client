@@ -34,8 +34,20 @@ const deleteColor = (id) => {
   })
 }
 
+const updatePalette = (data) => {
+  return $.ajax({
+    url: config.apiUrl + '/colors/' + store.colorIDForEdit,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data: data
+  })
+}
+
 module.exports = {
   createColor,
   getColors,
-  deleteColor
+  deleteColor,
+  updatePalette
 }

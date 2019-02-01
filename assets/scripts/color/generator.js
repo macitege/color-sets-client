@@ -5,6 +5,7 @@ const store = require('../store')
 // HISTORY HOLDS PREVIOUSLY GENERATED COLORS (MAX.30)
 const history = []
 // THE MOST RECENT COLOR SET GENERATED
+
 const colorSetHEX = {
   'color1': null,
   'color2': null,
@@ -77,8 +78,6 @@ function rgbaMaker () {
   colorSetRGBA['color5'] = 'rgba(' + parseInt(color5Parsed[0], 16) + ',' + parseInt(color5Parsed[1], 16) + ',' + parseInt(color5Parsed[2], 16) + ',1)'
 }
 
-
-
 function prepareForAPI () {
   const data = {}
   data.color = {}
@@ -89,10 +88,62 @@ function prepareForAPI () {
   return data
 }
 
-const editingColor = () => {
-  let r
-  let g
-  let b
+const liveEdit = () => {
+  const r1 = Number($('#red1').val())
+  const g1 = Number($('#green1').val())
+  const b1 = Number($('#blue1').val())
+  const r2 = Number($('#red2').val())
+  const g2 = Number($('#green2').val())
+  const b2 = Number($('#blue2').val())
+  const r3 = Number($('#red3').val())
+  const g3 = Number($('#green3').val())
+  const b3 = Number($('#blue3').val())
+  const r4 = Number($('#red4').val())
+  const g4 = Number($('#green4').val())
+  const b4 = Number($('#blue4').val())
+  const r5 = Number($('#red5').val())
+  const g5 = Number($('#green5').val())
+  const b5 = Number($('#blue5').val())
+
+  const r1HEX = r1.toString(16).length === 1 ? '0' + r1.toString(16) : r1.toString(16)
+  const g1HEX = g1.toString(16).length === 1 ? '0' + g1.toString(16) : g1.toString(16)
+  const b1HEX = b1.toString(16).length === 1 ? '0' + b1.toString(16) : b1.toString(16)
+  const r2HEX = r2.toString(16).length === 1 ? '0' + r2.toString(16) : r2.toString(16)
+  const g2HEX = g2.toString(16).length === 1 ? '0' + g2.toString(16) : g2.toString(16)
+  const b2HEX = b2.toString(16).length === 1 ? '0' + b2.toString(16) : b2.toString(16)
+  const r3HEX = r3.toString(16).length === 1 ? '0' + r3.toString(16) : r3.toString(16)
+  const g3HEX = g3.toString(16).length === 1 ? '0' + g3.toString(16) : g3.toString(16)
+  const b3HEX = b3.toString(16).length === 1 ? '0' + b3.toString(16) : b3.toString(16)
+  const r4HEX = r4.toString(16).length === 1 ? '0' + r4.toString(16) : r4.toString(16)
+  const g4HEX = g4.toString(16).length === 1 ? '0' + g4.toString(16) : g4.toString(16)
+  const b4HEX = b4.toString(16).length === 1 ? '0' + b4.toString(16) : b4.toString(16)
+  const r5HEX = r5.toString(16).length === 1 ? '0' + r5.toString(16) : r5.toString(16)
+  const g5HEX = g5.toString(16).length === 1 ? '0' + g5.toString(16) : g5.toString(16)
+  const b5HEX = b5.toString(16).length === 1 ? '0' + b5.toString(16) : b5.toString(16)
+
+  colorSetHEX['color1'] = ('#' + r1HEX + g1HEX + b1HEX).toUpperCase()
+  colorSetHEX['color2'] = ('#' + r2HEX + g2HEX + b2HEX).toUpperCase()
+  colorSetHEX['color3'] = ('#' + r3HEX + g3HEX + b3HEX).toUpperCase()
+  colorSetHEX['color4'] = ('#' + r4HEX + g4HEX + b4HEX).toUpperCase()
+  colorSetHEX['color5'] = ('#' + r5HEX + g5HEX + b5HEX).toUpperCase()
+
+  colorSetRGBA['color1'] = 'rgba(' + r1 + ',' + g1 + ',' + b1 + ',1)'
+  colorSetRGBA['color2'] = 'rgba(' + r2 + ',' + g2 + ',' + b2 + ',1)'
+  colorSetRGBA['color3'] = 'rgba(' + r3 + ',' + g3 + ',' + b3 + ',1)'
+  colorSetRGBA['color4'] = 'rgba(' + r4 + ',' + g4 + ',' + b4 + ',1)'
+  colorSetRGBA['color5'] = 'rgba(' + r5 + ',' + g5 + ',' + b5 + ',1)'
+
+  $('#editColor1').css('background-color', colorSetRGBA['color1'])
+  $('#editColor2').css('background-color', colorSetRGBA['color2'])
+  $('#editColor3').css('background-color', colorSetRGBA['color3'])
+  $('#editColor4').css('background-color', colorSetRGBA['color4'])
+  $('#editColor5').css('background-color', colorSetRGBA['color5'])
+
+  $('#editColor1Code').html(`<p>${colorSetRGBA['color1']}</p><p>${colorSetHEX['color1']}</p>`)
+  $('#editColor2Code').html(`<p>${colorSetRGBA['color2']}</p><p>${colorSetHEX['color2']}</p>`)
+  $('#editColor3Code').html(`<p>${colorSetRGBA['color3']}</p><p>${colorSetHEX['color3']}</p>`)
+  $('#editColor4Code').html(`<p>${colorSetRGBA['color4']}</p><p>${colorSetHEX['color4']}</p>`)
+  $('#editColor5Code').html(`<p>${colorSetRGBA['color5']}</p><p>${colorSetHEX['color5']}</p>`)
 }
 
 const addHandlers = () => {
@@ -120,18 +171,7 @@ const addHandlers = () => {
   $('input[type="range"]').each(function () {
     $(this).bind('mousedown', function () {
       $(this).bind('mousemove', function () {
-
-        const r1 = $('#red1').val()
-        console.log('r1: '+ r1)
-        const g1 = $('#green1').val()
-        console.log('g1: '+ g1)
-        const b1 = $('#blue1').val()
-        console.log('b1: '+ b1)
-        // const rgba1 = 'rgba(' + r1 + ',' + g1 + ',' + b1 + ',1)'
-        // console.log(rgba1)
-        $('.edit-modal.inner-content.editColor1').css('background-color', 'rgba(' + r1 + ',' + g1 + ',' + b1 + ',1)')
-        //
-        // $('#text').text(r + ',' + g + ',' + b)
+        liveEdit()
       })
     }).bind('mouseup', function () {
       $(this).unbind('mousemove')
