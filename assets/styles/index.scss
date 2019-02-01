@@ -240,22 +240,19 @@ body {
   flex-direction: column;
   justify-content: center;
 
-    .color-section-edit {
+    .inner-content {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
       width: 100%;
-
-      .inner-content {
-        display: flex;
-        justify-content: center;
-        padding: 10px;
-        width: 100%;
-      }
-
-      .small-square {
-        height: 200px;
-        width: calc(100%);
-        z-index: 11;
-      }
     }
+
+    .small-square {
+      height: 200px;
+      width: calc(100%);
+      z-index: 11;
+    }
+
 }
 
 .editor-input-wrap {

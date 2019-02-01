@@ -89,6 +89,12 @@ function prepareForAPI () {
   return data
 }
 
+const editingColor = () => {
+  let r
+  let g
+  let b
+}
+
 const addHandlers = () => {
   $('#hexCode1').on('change', () => {
     const newColor = $('#hexCode1').val()
@@ -109,6 +115,27 @@ const addHandlers = () => {
   $('#hexCode5').on('change', () => {
     const newColor = $('#hexCode5').val()
     $('#fifth-color').css('background-color', newColor)
+  })
+
+  $('input[type="range"]').each(function () {
+    $(this).bind('mousedown', function () {
+      $(this).bind('mousemove', function () {
+
+        const r1 = $('#red1').val()
+        console.log('r1: '+ r1)
+        const g1 = $('#green1').val()
+        console.log('g1: '+ g1)
+        const b1 = $('#blue1').val()
+        console.log('b1: '+ b1)
+        // const rgba1 = 'rgba(' + r1 + ',' + g1 + ',' + b1 + ',1)'
+        // console.log(rgba1)
+        $('.edit-modal.inner-content.editColor1').css('background-color', 'rgba(' + r1 + ',' + g1 + ',' + b1 + ',1)')
+        //
+        // $('#text').text(r + ',' + g + ',' + b)
+      })
+    }).bind('mouseup', function () {
+      $(this).unbind('mousemove')
+    })
   })
 }
 
