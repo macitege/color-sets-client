@@ -233,6 +233,7 @@ body {
   }
 }
 
+
 .edit-modal {
   align-items: center;
   display: flex;
@@ -255,22 +256,33 @@ body {
         z-index: 11;
       }
     }
-
-    .editor-input-wrap {
-      display: flex;
-      justify-content: space-between;
-      height: 400px;
-      width: 400px;
-    }
 }
 
-@media (max-width: 700px){
+.editor-input-wrap {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  margin: 30px;
+
+  width: 400px;
+  overflow: scroll;
+
+  .edit-color {
+    border: 1px dotted #828282;
+    padding: 10px;
+  }
+}
+
+
+
+@media (max-width: 700px) {
   .color-codes-wrapper {
     font-size: 18px;
 
     .color-codes {
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       transform: rotate(90deg);
 
       .hex-code {

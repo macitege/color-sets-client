@@ -45,7 +45,6 @@ const onEdit = () => {
     <section class="color-section-edit">
     ${contentToEdit.toString()}
     </section>
-    <div id="editorInputWrap" class="editor-input-wrap"></div>
     `)
 }
 
