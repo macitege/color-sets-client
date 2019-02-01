@@ -1,6 +1,7 @@
 'use strict'
 
 const displayColorsLog = require('../templates/display-colors.handlebars')
+const store = require('../store')
 
 const onCreateColorSuccess = () => {
   $('#message').text('Saved in your color palettes!').attr('class', 'alert alert-success shadow-lg')
@@ -18,6 +19,7 @@ const onGetColorsSuccess = (response) => {
   if (response.colors.length === 0) {
     $('#colorsLogArea').html('<p> You haven\'t saved color palettes yet</p>')
   } else {
+    store.colors = response.colors
     const colorsLog = displayColorsLog({colors: response.colors})
     $('#colorsLogArea').html(colorsLog)
   }
@@ -40,7 +42,6 @@ const onDeleteColorFailure = () => {
   $('#message').text('OOPS! Something went wrong. Try again.').attr('class', 'alert alert-danger shadow-lg')
   setTimeout(() => { $('#message').fadeOut() }, 2000)
 }
-
 
 module.exports = {
   onCreateColorSuccess,
