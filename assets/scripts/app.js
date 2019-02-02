@@ -12,7 +12,7 @@ const colorEvents = require('./color/events')
 
 // HIDDEN BUTTONS
 $('.alert').hide()
-$('#accountArea, #saveButton, #palettesButton, #palettesWrapper').hide()
+$('#accountArea, #saveButton, #palettesButton, #palettesWrapper, #messageEdit').hide()
 $('#signInFailureMessage, #changePwFailureMessage').hide()
 
 $(() => {
@@ -42,8 +42,16 @@ $(() => {
     $('#sidebar').css('width', '0px')
   })
 
-  // ENABLE TOOL TIPS
-  $('body').on('mouseover', '.opt', () => {
-    $('[data-toggle="edit"]', '[data-toggle="destroy"]').tooltip()
+  // TOOL TIPS
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip({
+      trigger: 'hover'
+    })
+  })
+
+  $('#safeSave').on('click', () => {
+    // setTimeout(() => {
+    $('#saveButton').tooltip('hide')
+    // }, 3000)
   })
 })

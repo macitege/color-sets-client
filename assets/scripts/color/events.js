@@ -98,9 +98,9 @@ const onUpdate = (event) => {
   console.log(store)
 
   api.updatePalette(data)
-    // .then(ui.onUpdateSuccess)
+    .then(ui.onUpdateSuccess)
     .then(onGetColors)
-    // .catch(ui.onUpdateFailure)
+    .catch(ui.onUpdateFailure)
 
   // PATCH STORE.Color
   // UPDATE sidebar
@@ -110,6 +110,7 @@ const onUpdate = (event) => {
 const addHandlers = () => {
   $('#saveButton').on('click', onCreate)
   $('#generateButton').on('click', colorGenerator.makeColors)
+  $('#generateButton').on('click', () => { $('#safeSave').trigger('click') })
   $('#palettesButton').on('click', onGetColors)
   $('#deletePaletteConfirm').on('click', onDelete)
   $('#updatePalette').on('click', onUpdate)
@@ -127,6 +128,7 @@ const addHandlers = () => {
     event.preventDefault()
     if (event.keyCode === 32) {
       colorGenerator.makeColors()
+      $('#safeSave').trigger('click')
     }
   })
 }

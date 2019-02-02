@@ -65,17 +65,18 @@
         </div>
 
 
-        <div id="generateButton" class="generate-button btn btn-outline-dark">
+        <button id="generateButton" class="generate-button btn btn-outline-dark">
           Generate
-        </div>
+        </button>
+        <button id="safeSave" hidden></button>
+          <button id="saveButton" class="save-button btn btn-secondary btn-outline-dark" aria-pressed="false" data-toggle="tooltip" data-placement="bottom" title="A palette can only be saved once.">
+            Save
+          </button>
 
-        <div id="saveButton" class="save-button btn btn-outline-dark">
-          Save
-        </div>
 
-        <div id="palettesButton" class="palettes-button btn btn-outline-dark">
+        <button id="palettesButton" class="palettes-button btn btn-outline-dark">
           &boxplus; Palettes
-        </div>
+        </button>
       </div>
 
 <!-- MAIN-AREA -->
@@ -199,7 +200,7 @@
                         </button>
                       </div>
                       <div class="modal-footer">
-                        <button id="deletePaletteConfirm" type="button" class="btn btn-primary btn-danger">Yes, delete.</button>
+                        <button id="deletePaletteConfirm" type="button" class="btn btn-primary btn-danger btn-block">Yes, delete.</button>
                       </div>
                     </div>
                   </div>
@@ -210,14 +211,20 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLabel">Let's change this palette...</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <button type="button" class="close close-edit-modal" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
+                        </div>
+                        <div class="messageEdit">
+                          <div id="messageEdit" class="" role="alert">
+
+                          </div>
                         </div>
                         <div id="editModal" class="modal-body edit-modal">
 
                         </div>
                         <div id="editorInputWrap" class="editor-input-wrap">
+                          <hr/>
                           <h3>Color 1</h3>
                           <p id="editColor1Code"></p>
                           <div id="editColor1" class="edit-color">
@@ -225,6 +232,7 @@
                             <span> Green: </span> <input id="green1" type="range" min="0" max="255" value="10"/><br/>
                             <span> Blue: </span> <input id="blue1" type="range" min="0" max="255" value="120"/>
                           </div>
+                          <hr/>
                           <h3>Color 2</h3>
                           <p id="editColor2Code"></p>
                           <div id="editColor2" class="edit-color">
@@ -232,6 +240,7 @@
                             <span> Green: </span> <input id="green2" type="range" min="0" max="255" value="10"/><br/>
                             <span> Blue: </span> <input id="blue2" type="range" min="0" max="255" value="120"/>
                           </div>
+                          <hr/>
                           <h3>Color 3</h3>
                           <p id="editColor3Code"></p>
                           <div id="editColor3" class="edit-color">
@@ -239,6 +248,7 @@
                             <span> Green: </span> <input id="green3" type="range" min="0" max="255" value="10"/><br/>
                             <span> Blue: </span> <input id="blue3" type="range" min="0" max="255" value="120"/>
                           </div>
+                          <hr/>
                            <h3>Color 4</h3>
                            <p id="editColor4Code"></p>
                           <div id="editColor4" class="edit-color">
@@ -246,6 +256,7 @@
                             <span> Green: </span> <input id="green4" type="range" min="0" max="255" value="10"/><br/>
                             <span> Blue: </span> <input id="blue4" type="range" min="0" max="255" value="120"/>
                           </div>
+                          <hr/>
                           <h3>Color 5</h3>
                           <p id="editColor5Code"></p>
                           <div id="editColor5" class="edit-color">
@@ -253,9 +264,10 @@
                             <span> Green: </span> <input id="green5" type="range" min="0" max="255" value="10"/><br/>
                             <span> Blue: </span> <input id="blue5" type="range" min="0" max="255" value="120"/>
                           </div>
+                          <hr/>
                         </div>
                         <div class="modal-footer">
-                          <button id="updatePalette" type="button" class="btn btn-primary btn-warning">Update this palette</button>
+                          <button id="updatePalette" type="button" class="btn btn-primary btn-warning btn-block">Update this palette</button>
                         </div>
                       </div>
                     </div>

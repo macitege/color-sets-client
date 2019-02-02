@@ -7,6 +7,7 @@ const onCreateColorSuccess = () => {
   $('#message').text('Saved in your color palettes!').attr('class', 'alert alert-success shadow-lg')
   $('#message').fadeIn()
   setTimeout(() => { $('#message').fadeOut() }, 2000)
+  $('#saveButton').attr('disabled', true)
 }
 
 const onCreateColorFailure = () => {
@@ -33,7 +34,7 @@ const onGetColorsFailure = () => {
 const onDeleteColorSuccess = (id) => {
   $('#' + id).remove()
   $('#deleteColorConfirm').modal('hide')
-  $('#message').text('Deleted!').attr('class', 'alert alert-success shadow-lg')
+  $('#message').text('Deleted!').attr('class', 'alert alert-warning shadow-lg')
   $('#message').fadeIn()
   setTimeout(() => { $('#message').fadeOut() }, 2000)
 }
@@ -43,7 +44,14 @@ const onDeleteColorFailure = () => {
   setTimeout(() => { $('#message').fadeOut() }, 2000)
 }
 
-// onUpdateSuccess
+const onUpdateSuccess = () => {
+  $('#messageEdit').text('Changed!').attr('class', 'alert alert-success shadow-lg')
+  $('#messageEdit').fadeIn()
+  setTimeout(() => {
+    $('#messageEdit').fadeOut()
+    $('#editColor').modal('hide')
+  }, 2000)
+}
 // onUpdateFailure
 
 module.exports = {
@@ -52,5 +60,6 @@ module.exports = {
   onGetColorsSuccess,
   onGetColorsFailure,
   onDeleteColorSuccess,
-  onDeleteColorFailure
+  onDeleteColorFailure,
+  onUpdateSuccess
 }

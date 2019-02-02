@@ -46,6 +46,7 @@ function makeColors () {
     history.shift()
   }
   rgbaMaker()
+  $('#saveButton').attr('disabled', false)
 }
 
 function rgbaMaker () {
