@@ -55,6 +55,10 @@ const addHandlers = () => {
   $('#signInDropdown').click((e) => {
     e.stopPropagation()
   })
+  // RESET SIGN-IN FORM IF DROPDOWN IS HIDDEN
+  $('#signInButton').on('click', function () {
+    $('#signInForm').trigger('reset')
+  })
 }
 
 module.exports = {

@@ -60,7 +60,7 @@ the main page.
 chosen palette from the library.
 
 ### Initial Project
-#### Wire Frame:
+#### Wire Frames:
 - [FRONT END WIRE FRAME](https://i.imgur.com/XE8QGBP.jpg)
 - [BACK END ENTITY RELATIONSHIP DIAGRAM](https://i.imgur.com/EKMieWw.jpg)
 #### User Stories:

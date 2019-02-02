@@ -43,15 +43,8 @@ $(() => {
   })
 
   // TOOL TIPS
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip({
-      trigger: 'hover'
-    })
-  })
-
+  $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'})
   $('#safeSave').on('click', () => {
-    // setTimeout(() => {
     $('#saveButton').tooltip('hide')
-    // }, 3000)
   })
 })

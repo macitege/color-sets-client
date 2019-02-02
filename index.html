@@ -19,26 +19,30 @@
           <div class="navbar-brand" href="./index.html">&ropf;&aopf;&iopf;&nopf;&bopf;&oopf;&wopf;'&sopf; &Bopf;.&Fopf;.&Fopf;. &smashp; &copf;&oopf;&lopf;&oopf;&ropf;&sopf;</div>
 <!-- BEFORE SIGN-IN ELEMENT -->
           <div id="authArea" class="btn-group">
-            <button id="signInButton" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login &#9776;
-            </button>
-            <button style="margin-left: 2px; border-radius: 5px;" class="btn sign-up-button btn-dark" data-toggle="modal" type="button" data-target="#signUpModal" aria-haspopup="true" aria-expanded="false">
-            Signup
-            </button>
-            <div id="signInDropdown" class="dropdown-menu dropdown-menu-right">
-              <form id="signInForm" class="px-4 py-3">
 
-                <div class="sign-in-failure-message">
-                  <div id="signInFailureMessage">
-                    <span class="badge badge-danger">Sign in unsuccessful.</span>
+            <div class="dropdown dropdown-menu-right">
+              <button id="signInButton" class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Login &#9776;
+              </button>
+              <div id="signInDropdown" class="dropdown-menu" aria-labelledby="signInDropdown">
+                <form id="signInForm" class="px-4 py-3">
+                  <div class="sign-in-failure-message">
+                    <div id="signInFailureMessage">
+                      <span class="badge badge-danger">Sign in unsuccessful.</span>
+                    </div>
                   </div>
-                </div>
 
-                  <input type="email" name="credentials[email]" class="form-control" placeholder="Email">
-                  <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
-                <button type="submit" class="btn btn-primary btn-dark">Login</button>
-              </form>
+
+                    <input type="email" name="credentials[email]" class="form-control" placeholder="Email">
+                    <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
+                  <button type="submit" class="btn btn-primary btn-dark">Login</button>
+                </form>
+              </div>
             </div>
+
+            <button style="margin-left: 2px; border-radius: 5px;" class="btn sign-up-button btn-dark" data-toggle="modal" type="button" data-target="#signUpModal" aria-haspopup="true" aria-expanded="false">
+              Signup
+            </button>
           </div>
 
 
