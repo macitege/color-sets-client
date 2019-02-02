@@ -183,5 +183,7 @@ const addHandlers = () => {
 module.exports = {
   makeColors,
   prepareForAPI,
-  addHandlers
+  addHandlers,
+  colorSetHEX,
+  colorSetRGBA
 }

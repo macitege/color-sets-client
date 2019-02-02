@@ -101,10 +101,6 @@ const onUpdate = (event) => {
     .then(ui.onUpdateSuccess)
     .then(onGetColors)
     .catch(ui.onUpdateFailure)
-
-  // PATCH STORE.Color
-  // UPDATE sidebar
-  // UPDATE API
 }
 
 const addHandlers = () => {

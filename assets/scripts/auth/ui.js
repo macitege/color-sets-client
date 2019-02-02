@@ -49,6 +49,8 @@ const onSignOutSuccess = () => {
       .attr('class', 'alert alert-warning shadow-lg')
       .fadeIn()
   }, 3000)
+  $('#saveButton').attr('disabled', false)
+  $('#safeSave').trigger('click')
 }
 
 const onSignOutFailure = () => {
