@@ -56,6 +56,9 @@ const addHandlers = () => {
     e.stopPropagation()
   })
   // RESET SIGN-IN FORM IF DROPDOWN IS HIDDEN
+  $('body').on('click', function () {
+    $('#signInForm').trigger('reset')
+  })
   $('#signInButton').on('click', function () {
     $('#signInForm').trigger('reset')
   })
