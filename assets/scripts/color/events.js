@@ -94,9 +94,6 @@ const onUpdate = (event) => {
   event.preventDefault()
   const data = colorGenerator.prepareForAPI()
 
-  console.log(data)
-  console.log(store)
-
   api.updatePalette(data)
     .then(ui.onUpdateSuccess)
     .then(onGetColors)

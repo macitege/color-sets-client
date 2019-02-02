@@ -17,7 +17,6 @@ const onCreateColorFailure = () => {
 }
 
 const onGetColorsSuccess = (response) => {
-  console.log(response)
   if (response.colors.length === 0) {
     $('#colorsLogArea').html('<p> You haven\'t saved color palettes yet</p>')
   } else {
