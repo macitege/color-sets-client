@@ -1,5 +1,9 @@
 # Color Palettes Generator | RAINBOW'S B.F.F.
 #### Created by Macit Ege ERCAN
+ - [LINK TO **FRONT END REPO**](https://github.com/macitege/color-sets-client)
+ - [LINK TO **DEPLOYED WEBSITE**](https://macitege.github.io/color-sets-client)
+ - [LINK TO **BACK END / API REPO**](https://github.com/macitege/color-sets-api)
+ - [LINK TO **DEPLOYED API**](https://color-sets-api.herokuapp.com)
 
 ## Features
 - This is a full-stack web application project with API support for authentication,
@@ -37,10 +41,12 @@ deep debate, there is always a better..
 - Since this is a full-stack project and a very visual one, mostly, I have been
 building front end and the code behind the scenes simultaneously.
 - The hardest part of the project was probably creating the editor where I had to
-transfer color codes between places, and also keep the color palette generated on
-the main page stable and available to save if it is not saved before editing
-operations.
-- The fun part was its entirety. And planning it.
+convert and transfer color codes between places, and also keep the color palette
+generated on the main page stable and available to save if it is not saved before
+editing operations. That confused me a lot and I had to stop coding and start drawing
+a scheme of the actions happening while editing and updating a color palette.
+[The photo of what I draw while this process](https://i.imgur.com/BCXxGDJ.jpg)
+- The fun part of the project was its entirety. And planning it.
 - It took 4 days to build.
 
 
