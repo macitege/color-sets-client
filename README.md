@@ -55,8 +55,8 @@ chosen palette from the library.
 
 ### Initial Project
 #### Wire Frame:
-[FRONT END WIRE FRAME](https://i.imgur.com/XE8QGBP.jpg)
-[BACK END ENTITY RELATIONSHIP DIAGRAM](https://i.imgur.com/EKMieWw.jpg)
+- [FRONT END WIRE FRAME](https://i.imgur.com/XE8QGBP.jpg)
+- [BACK END ENTITY RELATIONSHIP DIAGRAM](https://i.imgur.com/EKMieWw.jpg)
 #### User Stories:
 - As a user I want to genereate color schemes consist of 5 random colors.
 - As a user I want to see 5 colors next to each other.
