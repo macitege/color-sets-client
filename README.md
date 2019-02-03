@@ -13,15 +13,14 @@ and storage of desired color palettes generated.
 - Each color shows their hex codes. Also, rgb codes can be reached at editor modal
 for signed in user.
 - Not signed in users can use Rainbow's B.F.F., however, when signed in, generated
-colors can be saved in users palette library. User can delete or update their saved
+colors can be saved in user's palette library. User can delete or update their saved
 palettes.
 - Editor modal provides range inputs for each color's Red, Green and Blue values,
 user can edit the colors by the inputs and updated the color. Once color is updated,
 it can be reached in users palettes side bar.
 
 ### Technologies Used
-- For the front end of this website, `HTML5`, `SASS`, `jQuery`, `Handlebars`,
-`typed.js` library and `Bootstrap` have been used.
+- For the front end of this website, `HTML5`, `SASS`, `jQuery`, `Handlebars`,and `Bootstrap` have been used.
 - For color generator `JavaScript` has been used.
 
 - For authentication and user features (saving and editing the colors), an API
