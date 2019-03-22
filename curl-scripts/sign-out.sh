@@ -1,6 +1,6 @@
-curl "https://color-sets-api.herokuapp.com/colors" \
+curl "https://color-sets-api.herokuapp.com/sign-out" \
   --include \
-  --request GET \
+  --request DELETE \
   --header "Content-Type: application/json" \
   --header "Authorization: Token token=${TOKEN}" \
 

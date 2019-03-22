@@ -27,7 +27,7 @@ function makeColors () {
     // '#'+Math.floor(Math.random()*16777215).toString(16);
     let colorHEX = '#'
     while (colorHEX.length < 7) {
-      colorHEX += (Math.random()).toString(16).substr(-6).substr(-1)
+      colorHEX += (Math.random()).toString(16).substr(-6)
     }
     colorSetHEX['color' + i] = colorHEX.toUpperCase()
   }
@@ -55,7 +55,7 @@ function rgbaMaker () {
   const color3Parsed = []
   const color4Parsed = []
   const color5Parsed = []
-
+  // "#45-45-45" -> 45
   color1Parsed.push('0x' + colorSetHEX['color1'].toString().replace('#', '').slice(0, 2))
   color1Parsed.push('0x' + colorSetHEX['color1'].toString().replace('#', '').slice(2, 4))
   color1Parsed.push('0x' + colorSetHEX['color1'].toString().replace('#', '').slice(4, 6))

@@ -13,9 +13,10 @@ $color-size: $color-size-width;
   width: calc(100vw / 5);
   z-index: -3;
 }
-
+// html {height: 100vh; width: 100vw;}
 body {
   height: calc(calc(100vh) - 60px);
+  width: 100%;
   z-index: -2;
 }
 
@@ -203,7 +204,7 @@ body {
       background: none;
       text-align: center;
       border: none;
-      height: 25px;
+      height: calc(calc(12vw)/5);
       width: calc(calc(500%)/7);
       color: white;
     }
@@ -305,6 +306,7 @@ body {
       transform: rotate(90deg);
 
       .hex-code {
+        height: 140px;
         width: 140px;
       }
     }
