@@ -14,7 +14,6 @@ const colorEvents = require('./color/events')
 $('.alert').hide()
 $('#accountArea, #saveButton, #palettesButton, #palettesWrapper, #messageEdit').hide()
 $('#signInFailureMessage, #changePwFailureMessage').hide()
-$('.toast').toast({autohide: false}).toast('show')
 
 $(() => {
   // EVENT HANDLERS
@@ -24,9 +23,8 @@ $(() => {
   colorEvents.addHandlers()
 
   // SIGN IN WARNING
-  // $('#message')
-  //   .html('Please <a class="alert-link">sign in</a> to save you own color palettes!')
-  //   .attr('class', 'alert alert-warning shadow-lg')
+  $('.toast').toast({autohide: false})
+  $('.toast').toast('show')
 
   // PALETTES SIDE BAR TOGGLE BUTTON
   $('#palettesButton').on('click', () => {
