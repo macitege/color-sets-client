@@ -23,8 +23,19 @@ $(() => {
   colorEvents.addHandlers()
 
   // SIGN IN WARNING
-  $('.toast').toast({autohide: false})
-  $('.toast').toast('show')
+  $('#info-toast').toast({autohide: false})
+  $('#info-toast').toast('show')
+  $('#info-toast').on('hidden.bs.toast', function () {
+    $('.info-img').animate({
+      opacity: 0.8
+    })
+  })
+  $('#infoButton').on('click', () => {
+    $('#info-toast').toast('show')
+    $('.info-img').animate({
+      opacity: 0.2
+    })
+  })
 
   // PALETTES SIDE BAR TOGGLE BUTTON
   $('#palettesButton').on('click', () => {
@@ -45,5 +56,23 @@ $(() => {
   $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'})
   $('#safeSave').on('click', () => {
     $('#saveButton').tooltip('hide')
+  })
+
+  // MAKES SPACE BAR THE GENERATOR BUTTON
+  let autoGenerateState = false
+  let loop
+  const autoGenerate = () => {
+    loop = setInterval(() => colorGenerator.makeColors(), 600)
+  }
+
+  $('body').on('keyup', (event) => {
+    event.preventDefault()
+    if (event.keyCode === 32) {
+      colorGenerator.makeColors()
+      $('#safeSave').trigger('click')
+    } else if (event.keyCode === 76) {
+      autoGenerateState ? clearInterval(loop) : autoGenerate()
+      autoGenerateState = !autoGenerateState
+    }
   })
 })

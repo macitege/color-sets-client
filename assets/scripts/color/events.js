@@ -115,15 +115,6 @@ const addHandlers = () => {
     store.colorIDForEdit = event.target.dataset.id
     onEdit()
   })
-
-  // MAKES SPACE BAR THE GENERATOR BUTTON
-  $('body').on('keyup', (event) => {
-    event.preventDefault()
-    if (event.keyCode === 32) {
-      colorGenerator.makeColors()
-      $('#safeSave').trigger('click')
-    }
-  })
 }
 
 module.exports = {

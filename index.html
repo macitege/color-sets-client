@@ -68,9 +68,11 @@
           </div>
         </div>
 
-
         <button id="generateButton" class="generate-button btn btn-outline-dark">
           Generate
+        </button>
+        <button id="infoButton" class="generate-button btn btn-outline-dark">
+          <img class="info-img" style="" alt="information BUTTON" src='./public/img/information.png'/>
         </button>
         <button id="safeSave" hidden></button>
           <button id="saveButton" class="save-button btn btn-secondary btn-outline-dark" aria-pressed="false" data-toggle="tooltip" data-placement="bottom" title="A palette can be saved only once.">
@@ -82,7 +84,7 @@
           &boxplus; Palettes
         </button>
       </div>
-      <div class="toast shadow-lg" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; right: 0; z-index: 999">
+      <div id="info-toast" class="toast shadow-lg" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; right: 0; z-index: 999">
           <div class="toast-header">
             <strong class="mr-auto">About this website</strong>
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
