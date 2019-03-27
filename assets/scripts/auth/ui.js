@@ -43,12 +43,7 @@ const onSignOutSuccess = () => {
   $('#authArea').fadeIn()
   $('#saveButton, #palettesButton').hide()
   setTimeout(() => { $('#message').fadeOut() }, 2000)
-  setTimeout(() => {
-    $('#message')
-      .html('Please <a class="alert-link">sign in</a> to save you own color palettes!')
-      .attr('class', 'alert alert-warning shadow-lg')
-      .fadeIn()
-  }, 3000)
+
   $('#saveButton').attr('disabled', false)
   $('#safeSave').trigger('click')
 }
