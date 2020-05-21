@@ -1,4 +1,5 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap');
 
 $color-size-width: 200px;
 $color-size-height: $color-size-width;
@@ -199,12 +200,14 @@ body {
   position: absolute;
   justify-content: space-around;
   top: calc(calc(100%) - 150px);
+  
 
   .color-codes {
     width: calc(calc(100%)/5.3);
     display: flex;
     justify-content: center;
     align-content: center;
+    
 
     .hex-code {
       background: none;
@@ -212,7 +215,9 @@ body {
       border: none;
       height: calc(calc(12vw)/5);
       width: calc(calc(500%)/7);
-      color: white;
+      color: rgba(255, 255, 255, 0.767);
+      font-family: 'Rubik', sans-serif;
+      cursor: pointer;
     }
   }
 
@@ -312,8 +317,8 @@ body {
       transform: rotate(90deg);
 
       .hex-code {
-        height: 140px;
-        width: 140px;
+        height: 30px;
+        width: 100px;
       }
     }
   }
