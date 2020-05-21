@@ -24,7 +24,7 @@ $(() => {
 
   // SIGN IN WARNING
   $('#info-toast').toast({autohide: false})
-  $('#info-toast').toast('show')
+  // $('#info-toast').toast('show')
   $('#info-toast').on('hidden.bs.toast', function () {
     $('.info-img').animate({
       opacity: 0.8
@@ -62,7 +62,7 @@ $(() => {
   let autoGenerateState = false
   let loop
   const autoGenerate = () => {
-    loop = setInterval(() => colorGenerator.makeColors(), 600)
+    loop = setInterval(() => colorGenerator.makeColors(), 1000)
   }
 
   $('body').on('keyup', (event) => {
@@ -74,5 +74,9 @@ $(() => {
       autoGenerateState ? clearInterval(loop) : autoGenerate()
       autoGenerateState = !autoGenerateState
     }
+  })
+  $('#icon-palette').on('click', (event) => {
+    event.preventDefault()
+    colorGenerator.makeColors()
   })
 })

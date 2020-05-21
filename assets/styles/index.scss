@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap');
 
+
 $color-size-width: 200px;
 $color-size-height: $color-size-width;
 $color-size: $color-size-width;
@@ -31,10 +32,20 @@ body {
   z-index: 3;
 }
 
+//////////////////////////////////
+.material-icons {cursor: pointer; 
+                 margin-right: 5px;
+                                  }
+.material-icons.md-36 { font-size: 45px;}
+.material-icons.md-dark { color: rgba(2, 2, 2, 0.925); }
+
+
+//////////////////////////////////
 .info-img {
   height: 25px;
   width: 25px;
-  opacity: 0.2;
+  opacity: 1;
+  
 }
 
 .sidebar {
@@ -81,7 +92,7 @@ body {
   background-color: #fdfdfd;
   display: flex;
   height: 40px;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 56px;
   width: 100%;
 
@@ -132,8 +143,9 @@ body {
   height: 100px;
   justify-content: center;
   position: absolute;
-  width: 100vw;
+  width: 30vw;
   z-index: 1;
+  right: 0;
 }
 
 .messageEdit {

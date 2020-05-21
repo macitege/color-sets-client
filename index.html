@@ -6,7 +6,8 @@
 
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
@@ -62,12 +63,11 @@
 
       </header>
       <div class="options shadow-sm rounded">
-        <div class="message">
-          <div id="message" class="" role="alert">
-
-          </div>
-        </div>
-
+        <i><span id="icon-palette" class="material-icons md-36 md-dark" title="Generate">palette</span></i>
+        <i><span id="icon-undo" class="material-icons md-36 md-dark" title="Undo">undo</span></i>
+        <i><span id="icon-redo" class="material-icons md-36 md-dark" title="Redo">redo</span></i>
+        
+        
         <button id="generateButton" class="generate-button btn btn-outline-dark">
           Generate
         </button>
@@ -100,6 +100,11 @@
               <li>Generate random color palettes for your design projects!</li>
               <li>Sign Up for saving your own palettes.</li>
             </ul>
+          </div>
+        </div>
+        <div class="message">
+          <div id="message" class="" role="alert">
+
           </div>
         </div>
 <!-- MAIN-AREA -->
