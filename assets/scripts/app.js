@@ -75,8 +75,28 @@ $(() => {
       autoGenerateState = !autoGenerateState
     }
   })
-  $('#icon-palette').on('click', (event) => {
-    event.preventDefault()
-    colorGenerator.makeColors()
-  })
+  // $('#icon-palette').on('click', (event) => {
+  //   event.preventDefault()
+  //   colorGenerator.makeColors()
+  // })
+
+ // COLOR CODE COPY TO CLIPBOARD
+ const colorCodes = document.querySelectorAll('.color-codes')
+ colorCodes.forEach(div => div.addEventListener('click', function(){
+  let hexCodes = div.childNodes[1].value
+  const el = document.createElement('textarea')
+  el.value = hexCodes
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
+  $('#message').text('Color copied to the clipboard!').attr('class', 'alert alert-success shadow-lg')
+  $('#message').fadeIn()
+  setTimeout(() => { $('#message').fadeOut() }, 2000)
+  $('#saveButton').attr('disabled', true)
+ }))
+
 })
+
+
+

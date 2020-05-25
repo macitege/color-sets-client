@@ -33,11 +33,11 @@ body {
 }
 
 //////////////////////////////////
-.material-icons {cursor: pointer; 
-                 margin-right: 5px;
-                                  }
-.material-icons.md-36 { font-size: 45px;}
-.material-icons.md-dark { color: rgba(2, 2, 2, 0.925); }
+// .material-icons {cursor: pointer; 
+//                  margin-right: 5px;
+//                                   }
+// .material-icons.md-36 { font-size: 45px;}
+// .material-icons.md-dark { color: rgba(2, 2, 2, 0.925); }
 
 
 //////////////////////////////////
@@ -88,11 +88,19 @@ body {
   }
 }
 
+#generate-info {
+  flex: auto;
+  color: rgba(0, 0, 0, 0.404);
+  font-size: 16px;
+  margin: auto;
+  font-family: 'Rubik', sans-serif;
+}
+
 .options {
   background-color: #fdfdfd;
   display: flex;
   height: 40px;
-  justify-content: center;
+  justify-content: flex-end;
   margin-top: 56px;
   width: 100%;
 
@@ -143,7 +151,7 @@ body {
   height: 100px;
   justify-content: center;
   position: absolute;
-  width: 30vw;
+  width: 100vw;
   z-index: 1;
   right: 0;
 }
@@ -192,6 +200,7 @@ body {
     margin: auto;
     max-width: 100vw;
     position: relative;
+    
 
     .first-color,
     .second-color,
@@ -213,27 +222,45 @@ body {
   justify-content: space-around;
   top: calc(calc(100%) - 150px);
   
-
+  
+  
   .color-codes {
-    width: calc(calc(100%)/5.3);
+    height: calc(calc(12vw)/5);
+    width: calc(calc(500%)/7);
     display: flex;
     justify-content: center;
     align-content: center;
     
-
+    
     .hex-code {
       background: none;
+      opacity: 60%;
+      border-radius: 3px;
       text-align: center;
       border: none;
       height: calc(calc(12vw)/5);
       width: calc(calc(500%)/7);
-      color: rgba(255, 255, 255, 0.767);
+      z-index: 999;
+      color: rgb(255, 255, 255);
       font-family: 'Rubik', sans-serif;
       cursor: pointer;
+      
+      
+      
     }
-  }
 
+    .hex-code:hover {
+      opacity: 80%;
+      text-shadow: 0.5px 0.5px 4px rgba(0, 0, 0, 0.575);
+      
+      
+    }
+   
+  }
+ 
 }
+
+
 
 .color-section {
   border: 1px solid #a2a2a2;
@@ -317,9 +344,15 @@ body {
   }
 }
 
-
+@media (max-width: 800px) {
+  #generate-info {
+    visibility: hidden;
+  }
+  
+}
 
 @media (max-width: 700px) {
+
   .color-codes-wrapper {
     font-size: 18px;
 
@@ -339,6 +372,8 @@ body {
   body {
     height: calc(calc(100vh) - 114px);
   }
+
+  
 
   .colors {
     margin-top: -156px;
