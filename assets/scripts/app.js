@@ -23,7 +23,9 @@ $(() => {
   colorEvents.addHandlers()
 
   // SIGN IN WARNING
-  $('#info-toast').toast({autohide: false})
+  $('#info-toast').toast({
+    autohide: false
+  })
   // $('#info-toast').toast('show')
   $('#info-toast').on('hidden.bs.toast', function () {
     $('.info-img').animate({
@@ -53,7 +55,9 @@ $(() => {
   })
 
   // TOOL TIPS
-  $('[data-toggle="tooltip"]').tooltip({trigger: 'hover'})
+  $('[data-toggle="tooltip"]').tooltip({
+    trigger: 'hover'
+  })
   $('#safeSave').on('click', () => {
     $('#saveButton').tooltip('hide')
   })
@@ -75,28 +79,26 @@ $(() => {
       autoGenerateState = !autoGenerateState
     }
   })
-  // $('#icon-palette').on('click', (event) => {
-  //   event.preventDefault()
-  //   colorGenerator.makeColors()
+
+  // COLOR CODE COPY TO CLIPBOARD
+  $('.color-codes').on('click', function () {
+    const hexCodes = this.childNodes[1].value
+    const el = document.createElement('textarea')
+    el.value = hexCodes
+    document.body.appendChild(el)
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
+    $('#message').text('Color copied to the clipboard!').attr('class', 'alert alert-success shadow-lg')
+    $('#message').fadeIn()
+    setTimeout(() => {
+      $('#message').fadeOut()
+    }, 2000)
+  })
+
+  // // UNDO & REDO BUTTON
+  // $('#undoButton').on('click', () => {
+  //   colorGenerator.colorSetHEX['color1'] = colorGenerator.history[0][0]
   // })
 
- // COLOR CODE COPY TO CLIPBOARD
- const colorCodes = document.querySelectorAll('.color-codes')
- colorCodes.forEach(div => div.addEventListener('click', function(){
-  let hexCodes = div.childNodes[1].value
-  const el = document.createElement('textarea')
-  el.value = hexCodes
-  document.body.appendChild(el)
-  el.select()
-  document.execCommand('copy')
-  document.body.removeChild(el)
-  $('#message').text('Color copied to the clipboard!').attr('class', 'alert alert-success shadow-lg')
-  $('#message').fadeIn()
-  setTimeout(() => { $('#message').fadeOut() }, 2000)
-  $('#saveButton').attr('disabled', true)
- }))
-
 })
-
-
-

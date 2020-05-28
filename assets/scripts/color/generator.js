@@ -22,15 +22,7 @@ const colorSetRGBA = {
   'color5': null
 }
 
-function makeColors () {
-  for (let i = 1; i <= 5; i++) {
-    // '#'+Math.floor(Math.random()*16777215).toString(16);
-    let colorHEX = '#'
-    while (colorHEX.length < 7) {
-      colorHEX += (Math.random()).toString(16).substr(-6)
-    }
-    colorSetHEX['color' + i] = colorHEX.toUpperCase()
-  }
+function updateColors() {
   $('#first-color').css('background-color', colorSetHEX['color1'])
   $('#hexCode1').val(colorSetHEX['color1'])
   $('#second-color').css('background-color', colorSetHEX['color2'])
@@ -41,15 +33,79 @@ function makeColors () {
   $('#hexCode4').val(colorSetHEX['color4'])
   $('#fifth-color').css('background-color', colorSetHEX['color5'])
   $('#hexCode5').val(colorSetHEX['color5'])
-  history.push(colorSetHEX)
+}
+
+function makeColors() {
+  for (let i = 1; i <= 5; i++) {
+    // '#'+Math.floor(Math.random()*16777215).toString(16);
+    let colorHEX = '#'
+    while (colorHEX.length < 7) {
+      colorHEX += (Math.random()).toString(16).substr(-6)
+    }
+    colorSetHEX['color' + i] = colorHEX.toUpperCase()
+  }
+
+  updateColors()
+  // ÖNCE HİSTORY DE BULUNDUĞUN YERDEN SONRAKİ ARRAY ELEMANLARINI SİL SONRA PUSH
+
+  for (let j = 0; j < history.length; j++) {
+    if (history[j][0] === colorSetHEX['color1'] &&
+      history[j][1] === colorSetHEX['color2'] &&
+      history[j][2] === colorSetHEX['color3'] &&
+      history[j][3] === colorSetHEX['color4'] &&
+      history[j][4] === colorSetHEX['color5']) {
+      return history.splice(j + 1)
+
+    }
+
+  }
+
+  history.push(Object.values(colorSetHEX))
   if (history.length > 30) {
     history.shift()
   }
+  console.log(history)
   rgbaMaker()
   $('#saveButton').attr('disabled', false)
 }
 
-function rgbaMaker () {
+$('#undoButton').on('click', () => {
+  for (let i = 1; i < history.length; i++) {
+    if (history[i][0] === colorSetHEX['color1'] &&
+      history[i][1] === colorSetHEX['color2'] &&
+      history[i][2] === colorSetHEX['color3'] &&
+      history[i][3] === colorSetHEX['color4'] &&
+      history[i][4] === colorSetHEX['color5']) {
+      colorSetHEX['color1'] = history[i - 1][0]
+      colorSetHEX['color2'] = history[i - 1][1]
+      colorSetHEX['color3'] = history[i - 1][2]
+      colorSetHEX['color4'] = history[i - 1][3]
+      colorSetHEX['color5'] = history[i - 1][4]
+      return updateColors()
+    }
+  }
+
+})
+
+$('#redoButton').on('click', () => {
+  for (let i = 0; i < history.length - 1; i++) {
+    if (history[i][0] === colorSetHEX['color1'] &&
+      history[i][1] === colorSetHEX['color2'] &&
+      history[i][2] === colorSetHEX['color3'] &&
+      history[i][3] === colorSetHEX['color4'] &&
+      history[i][4] === colorSetHEX['color5']) {
+      colorSetHEX['color1'] = history[i + 1][0]
+      colorSetHEX['color2'] = history[i + 1][1]
+      colorSetHEX['color3'] = history[i + 1][2]
+      colorSetHEX['color4'] = history[i + 1][3]
+      colorSetHEX['color5'] = history[i + 1][4]
+      return updateColors()
+    }
+  }
+
+})
+
+function rgbaMaker() {
   const color1Parsed = []
   const color2Parsed = []
   const color3Parsed = []
@@ -79,7 +135,7 @@ function rgbaMaker () {
   colorSetRGBA['color5'] = 'rgba(' + parseInt(color5Parsed[0], 16) + ',' + parseInt(color5Parsed[1], 16) + ',' + parseInt(color5Parsed[2], 16) + ',1)'
 }
 
-function prepareForAPI () {
+function prepareForAPI() {
   const data = {}
   data.color = {}
   data.color.hex = `${colorSetHEX['color1']}-${colorSetHEX['color2']}-${colorSetHEX['color3']}-${colorSetHEX['color4']}-${colorSetHEX['color5']}`
@@ -185,5 +241,6 @@ module.exports = {
   prepareForAPI,
   addHandlers,
   colorSetHEX,
-  colorSetRGBA
+  colorSetRGBA,
+  history
 }

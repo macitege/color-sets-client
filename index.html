@@ -1,314 +1,328 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Rainbow's BFF</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-<!-- HEADER|ACCOUNT DROPDOWN -->
-      <header>
+<head>
+  <title>Rainbow's BFF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <nav class="navbar fixed-top navbar-light">
-          <div class="navbar-brand" href="./index.html">&ropf;&aopf;&iopf;&nopf;&bopf;&oopf;&wopf;'&sopf; &Bopf;.&Fopf;.&Fopf;. &smashp; &copf;&oopf;&lopf;&oopf;&ropf;&sopf;</div>
-<!-- BEFORE SIGN-IN ELEMENT -->
-          <div id="authArea" class="btn-group">
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-            <div class="dropdown dropdown-menu-right">
-              <button id="signInButton" class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Login &#9776;
-              </button>
-              <div id="signInDropdown" class="dropdown-menu" aria-labelledby="signInDropdown">
-                <form id="signInForm" class="px-4 py-3">
-                  <div class="sign-in-failure-message">
-                    <div id="signInFailureMessage">
-                      <span class="badge badge-danger">Sign in unsuccessful.</span>
-                    </div>
-                  </div>
+<body>
+  <!-- HEADER|ACCOUNT DROPDOWN -->
+  <header>
 
+    <nav class="navbar fixed-top navbar-light">
+      <div class="navbar-brand" href="./index.html">&ropf;&aopf;&iopf;&nopf;&bopf;&oopf;&wopf;'&sopf;
+        &Bopf;.&Fopf;.&Fopf;. &smashp; &copf;&oopf;&lopf;&oopf;&ropf;&sopf;</div>
+      <!-- BEFORE SIGN-IN ELEMENT -->
+      <div id="authArea" class="btn-group">
 
-                    <input type="email" name="credentials[email]" class="form-control" placeholder="Email">
-                    <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
-                  <button type="submit" class="btn btn-primary btn-dark">Login</button>
-                </form>
-              </div>
-            </div>
-
-            <button style="margin-left: 2px; border-radius: 5px;" class="btn sign-up-button btn-dark" data-toggle="modal" type="button" data-target="#signUpModal" aria-haspopup="true" aria-expanded="false">
-              Signup
-            </button>
-          </div>
-
-
-<!-- AFTER SIGN-IN ELEMENTS -->
-          <div id="accountArea" class="btn-group">
-            <button type="button" class="btn btn-secondary dropdown-toggle round" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-              <div class="hamburger">
-              </div>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <button id="changePassword" class="dropdown-item text-black-50" type="button" data-toggle="modal" data-target="#changePwModal">Change Passsord</button>
-              <button id="signout" class="dropdown-item text-black-50" type="button">Sign Out</button>
-            </div>
-          </div>
-
-        </nav>
-
-      </header>
-      <div class="options shadow-sm rounded">
-        <span id="generate-info">Generate palettes either by pressing <strong>spacebar</strong> or <strong>generate</strong> button!</span>
-        <!-- <i><span id="icon-palette" class="material-icons md-36 md-dark" title="Generate">palette</span></i>
-        <i><span id="icon-undo" class="material-icons md-36 md-dark" title="Undo">undo</span></i>
-        <i><span id="icon-redo" class="material-icons md-36 md-dark" title="Redo">redo</span></i>
-         -->
-        
-        <button id="generateButton" class="generate-button btn btn-outline-dark">
-          Generate
-        </button>
-        <button id="undoButton" class="generate-button btn btn-outline-dark">
-          Undo
-        </button>
-        <button id="redoButton" class="generate-button btn btn-outline-dark">
-          Redo
-        </button>
-        
-        <button id="infoButton" class="generate-button btn btn-outline-dark">
-          <img class="info-img" style="" alt="information BUTTON" src='./public/img/information.png'/>
-        </button>
-        <button id="safeSave" hidden></button>
-          <button id="saveButton" class="save-button btn btn-secondary btn-outline-dark" aria-pressed="false" data-toggle="tooltip" data-placement="bottom" title="A palette can be saved only once.">
-            Save
+        <div class="dropdown dropdown-menu-right">
+          <button id="signInButton" class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Login &#9776;
           </button>
+          <div id="signInDropdown" class="dropdown-menu" aria-labelledby="signInDropdown">
+            <form id="signInForm" class="px-4 py-3">
+              <div class="sign-in-failure-message">
+                <div id="signInFailureMessage">
+                  <span class="badge badge-danger">Sign in unsuccessful.</span>
+                </div>
+              </div>
 
 
-        <button id="palettesButton" class="palettes-button btn btn-outline-dark">
-          &boxplus; Palettes
+              <input type="email" name="credentials[email]" class="form-control" placeholder="Email">
+              <input type="password" name="credentials[password]" class="form-control" placeholder="Password">
+              <button type="submit" class="btn btn-primary btn-dark">Login</button>
+            </form>
+          </div>
+        </div>
+
+        <button style="margin-left: 2px; border-radius: 5px;" class="btn sign-up-button btn-dark" data-toggle="modal"
+          type="button" data-target="#signUpModal" aria-haspopup="true" aria-expanded="false">
+          Signup
         </button>
       </div>
-      <div id="info-toast" class="toast shadow-lg" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; right: 0; z-index: 999">
-          <div class="toast-header">
-            <strong class="mr-auto">About this website</strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+
+
+      <!-- AFTER SIGN-IN ELEMENTS -->
+      <div id="accountArea" class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle round" data-toggle="dropdown"
+          data-display="static" aria-haspopup="true" aria-expanded="false">
+          <div class="hamburger">
+          </div>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <button id="changePassword" class="dropdown-item text-black-50" type="button" data-toggle="modal"
+            data-target="#changePwModal">Change Passsord</button>
+          <button id="signout" class="dropdown-item text-black-50" type="button">Sign Out</button>
+        </div>
+      </div>
+
+    </nav>
+
+  </header>
+  <div class="options shadow-sm rounded">
+    <span id="generate-info">Generate palettes either by pressing <strong>spacebar</strong> or <strong>generate</strong>
+      button!</span>
+    <button id="generateButton" class="generate-button btn btn-outline-dark">
+      Generate
+    </button>
+    <button id="undoButton" class="generate-button btn btn-outline-dark">
+      Undo
+    </button>
+    <button id="redoButton" class="generate-button btn btn-outline-dark">
+      Redo
+    </button>
+
+    <button id="infoButton" class="generate-button btn btn-outline-dark">
+      <img class="info-img" style="" alt="information BUTTON" src='./public/img/information.png' />
+    </button>
+    <button id="safeSave" hidden></button>
+    <button id="saveButton" class="save-button btn btn-secondary btn-outline-dark" aria-pressed="false"
+      data-toggle="tooltip" data-placement="bottom" title="A palette can be saved only once.">
+      Save
+    </button>
+
+
+    <button id="palettesButton" class="palettes-button btn btn-outline-dark">
+      &boxplus; Palettes
+    </button>
+  </div>
+  <div id="info-toast" class="toast shadow-lg" role="alert" aria-live="assertive" aria-atomic="true"
+    style="position: absolute; right: 0; z-index: 999">
+    <div class="toast-header">
+      <strong class="mr-auto">About this website</strong>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      <p>
+        Generate palettes either by pressing <strong>spacebar</strong> or <strong>generate</strong> button on the top
+        right corner of this page.
+      </p>
+      <ul>
+        <li>This application helps you with finding color theme ideas.</li>
+        <li>Generate random color palettes for your design projects!</li>
+        <li>Sign Up for saving your own palettes.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="message">
+    <div id="message" class="" role="alert">
+
+    </div>
+  </div>
+  <!-- MAIN-AREA -->
+  <!-- SIDEBAR -->
+  <div id="sidebar" class="sidebar">
+    <a id="palettesClose" class="palettes-close">&times;</a>
+    <div id="palettesWrapper" class="palettes-wrapper">
+      <h3> Saved Palettes </h3>
+      <div class="divider"></div>
+      <div id="colorsLogArea" class="colors-Log">
+
+        <!-- SAVED COLORS GOES HERE -->
+
+      </div>
+    </div>
+  </div>
+  <!-- COLORS -->
+  <section class="colors">
+    <div class="colors-wrapper">
+      <div id="first-color" class="first-color"></div>
+      <div id="second-color" class="second-color"></div>
+      <div id="third-color" class="third-color"></div>
+      <div id="fourth-color" class="fourth-color"></div>
+      <div id="fifth-color" class="fifth-color"></div>
+    </div>
+  </section>
+  <!-- HEX CODES -->
+  <div class="color-codes-wrapper">
+    <div id="colorCodes" class="color-codes">
+      <input id="hexCode1" class="hex-code" value="#000000" disabled>
+    </div>
+    <div id="colorCodes" class="color-codes">
+      <input id="hexCode2" class="hex-code" value="#000000" disabled>
+    </div>
+    <div id="colorCodes" class="color-codes">
+      <input id="hexCode3" class="hex-code" value="#000000" disabled>
+    </div>
+    <div id="colorCodes" class="color-codes">
+      <input id="hexCode4" class="hex-code" value="#000000" disabled>
+    </div>
+    <div id="colorCodes" class="color-codes">
+      <input id="hexCode5" class="hex-code" value="#000000" disabled>
+    </div>
+  </div>
+
+
+
+
+  <!-- SIGN-UP MODAL -->
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalTitle"
+    aria-hidden="true">
+
+
+
+    <div class="modal-dialog modal-dialog-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <!-- FORM -->
+          <form id="signUpForm">
+            <div class="form-group">
+              <button id="signUpModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="toast-body">
-            <p>
-              Generate palettes either by pressing <strong>spacebar</strong> or <strong>generate</strong> button on the top right corner of this page.
-            </p>
-            <ul>
-              <li>This application helps you with finding color theme ideas.</li>
-              <li>Generate random color palettes for your design projects!</li>
-              <li>Sign Up for saving your own palettes.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="message">
-          <div id="message" class="" role="alert">
+              </button>
+              <br />
+              <label for="exampleDropdownFormEmail2">Sign Up</label>
+              <input name="credentials[email]" type="email" class="form-control" placeholder="E-mail Address">
 
-          </div>
-        </div>
-<!-- MAIN-AREA -->
-    <!-- SIDEBAR -->
-      <div id="sidebar" class="sidebar">
-        <a id="palettesClose" class="palettes-close">&times;</a>
-        <div id="palettesWrapper" class="palettes-wrapper">
-          <h3> Saved Palettes </h3>
-          <div class="divider"></div>
-          <div id="colorsLogArea" class="colors-Log">
 
-              <!-- SAVED COLORS GOES HERE -->
+              <input name="credentials[password]" type="password" class="form-control" placeholder="Password">
 
-          </div>
+
+              <input name="credentials[password_confirmation]" type="password" class="form-control"
+                placeholder="Confirm Password">
+            </div>
+            <button id="signUpButton" type="submit" class="btn btn-primary">Register</button>
+            <div id="signUpFailure" class="alert alert-danger sign-up-failure" role="alert">
+              Sign up unsuccessful!
+            </div>
+          </form>
         </div>
       </div>
-      <!-- COLORS -->
-      <section class="colors">
-        <div class="colors-wrapper">
-          <div id="first-color" class="first-color"></div>
-          <div id="second-color" class="second-color"></div>
-          <div id="third-color" class="third-color"></div>
-          <div id="fourth-color" class="fourth-color"></div>
-          <div id="fifth-color" class="fifth-color"></div>
-        </div>
-      </section>
-      <!-- HEX CODES -->
-      <div class="color-codes-wrapper">
-        <div id="colorCodes" class="color-codes">
-         <input id="hexCode1" class="hex-code" value="#000000" disabled>
-        </div>
-        <div id="colorCodes" class="color-codes">
-         <input id="hexCode2" class="hex-code" value="#000000" disabled>
-        </div>
-        <div id="colorCodes" class="color-codes">
-         <input id="hexCode3" class="hex-code" value="#000000" disabled>
-        </div>
-        <div id="colorCodes" class="color-codes">
-         <input id="hexCode4" class="hex-code" value="#000000" disabled>
-        </div>
-        <div id="colorCodes" class="color-codes">
-         <input id="hexCode5" class="hex-code" value="#000000" disabled>
+    </div>
+  </div>
+
+  <!-- CHANGE PASSWORD MODAL -->
+  <div class="modal fade" id="changePwModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalTitle"
+    aria-hidden="true">
+
+
+    <div class="modal-dialog modal-dialog-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <!-- FORM -->
+          <form id="changePwForm">
+            <div class="form-group">
+              <button id="changePwModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <br />
+              <label for="exampleDropdownFormEmail2">Change Password</label>
+              <div class="change-pw-failure-message">
+                <div id="changePwFailureMessage">
+                  <span class="badge badge-danger">Password change is failed.</span>
+                </div>
+              </div>
+              <input name="passwords[old]" type="password" class="form-control" placeholder="Old Password">
+              <input name="passwords[new]" type="password" class="form-control" placeholder="New Password">
+            </div>
+            <button id="changePwButton" type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
+    </div>
+  </div>
 
-
-
-
-<!-- SIGN-UP MODAL -->
-                <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalTitle" aria-hidden="true">
-
-
-
-                  <div class="modal-dialog modal-dialog-sm" role="document">
-                    <div class="modal-content">
-                      <div class="modal-body">
-<!-- FORM -->
-                        <form id="signUpForm">
-                          <div class="form-group">
-                            <button id="signUpModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                            <br/>
-                            <label for="exampleDropdownFormEmail2">Sign Up</label>
-                            <input name="credentials[email]" type="email" class="form-control" placeholder="E-mail Address">
-
-
-                            <input name="credentials[password]" type="password" class="form-control" placeholder="Password">
-
-
-                            <input name="credentials[password_confirmation]" type="password" class="form-control" placeholder="Confirm Password">
-                          </div>
-                          <button id="signUpButton" type="submit" class="btn btn-primary">Register</button>
-                          <div id="signUpFailure" class="alert alert-danger sign-up-failure" role="alert">
-                            Sign up unsuccessful!
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-<!-- CHANGE PASSWORD MODAL -->
-                <div class="modal fade" id="changePwModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalTitle" aria-hidden="true">
-
-
-                  <div class="modal-dialog modal-dialog-sm" role="document">
-                    <div class="modal-content">
-                      <div class="modal-body">
-<!-- FORM -->
-                        <form id="changePwForm">
-                          <div class="form-group">
-                            <button id="changePwModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                            <br/>
-                            <label for="exampleDropdownFormEmail2">Change Password</label>
-                            <div class="change-pw-failure-message">
-                              <div id="changePwFailureMessage">
-                                <span class="badge badge-danger">Password change is failed.</span>
-                              </div>
-                            </div>
-                            <input name="passwords[old]" type="password" class="form-control" placeholder="Old Password">
-                            <input name="passwords[new]" type="password" class="form-control" placeholder="New Password">
-                          </div>
-                          <button id="changePwButton" type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-<!-- DELETE COLOR CONFIRMATION MODAL -->
-                <div class="modal fade" id="deleteColorConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you wanna <strong>delete</strong><br/>this palette?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-footer">
-                        <button id="deletePaletteConfirm" type="button" class="btn btn-primary btn-danger btn-block">Yes, delete.</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  <!-- DELETE COLOR CONFIRMATION MODAL -->
+  <div class="modal fade" id="deleteColorConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure you wanna <strong>delete</strong><br />this
+            palette?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button id="deletePaletteConfirm" type="button" class="btn btn-primary btn-danger btn-block">Yes,
+            delete.</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- EDIT COLOR MODAL -->
-                  <div class="modal fade" id="editColor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Let's change this palette...</h5>
-                          <button type="button" class="close close-edit-modal" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="messageEdit">
-                          <div id="messageEdit" class="" role="alert">
+  <div class="modal fade" id="editColor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Let's change this palette...</h5>
+          <button type="button" class="close close-edit-modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="messageEdit">
+          <div id="messageEdit" class="" role="alert">
 
-                          </div>
-                        </div>
-                        <div id="editModal" class="modal-body edit-modal">
+          </div>
+        </div>
+        <div id="editModal" class="modal-body edit-modal">
 
-                        </div>
-                        <div id="editorInputWrap" class="editor-input-wrap">
-                          <hr/>
-                          <h3>Color 1</h3>
-                          <p id="editColor1Code"></p>
-                          <div id="editColor1" class="edit-color">
-                            <span> Red: </span> <input id="red1" type="range" min="0" max="255" value="0"/><br/>
-                            <span> Green: </span> <input id="green1" type="range" min="0" max="255" value="10"/><br/>
-                            <span> Blue: </span> <input id="blue1" type="range" min="0" max="255" value="120"/>
-                          </div>
-                          <hr/>
-                          <h3>Color 2</h3>
-                          <p id="editColor2Code"></p>
-                          <div id="editColor2" class="edit-color">
-                            <span> Red: </span> <input id="red2" type="range" min="0" max="255" value="0"/><br/>
-                            <span> Green: </span> <input id="green2" type="range" min="0" max="255" value="10"/><br/>
-                            <span> Blue: </span> <input id="blue2" type="range" min="0" max="255" value="120"/>
-                          </div>
-                          <hr/>
-                          <h3>Color 3</h3>
-                          <p id="editColor3Code"></p>
-                          <div id="editColor3" class="edit-color">
-                            <span> Red: </span> <input id="red3" type="range" min="0" max="255" value="0"/><br/>
-                            <span> Green: </span> <input id="green3" type="range" min="0" max="255" value="10"/><br/>
-                            <span> Blue: </span> <input id="blue3" type="range" min="0" max="255" value="120"/>
-                          </div>
-                          <hr/>
-                           <h3>Color 4</h3>
-                           <p id="editColor4Code"></p>
-                          <div id="editColor4" class="edit-color">
-                            <span> Red: </span> <input id="red4" type="range" min="0" max="255" value="0"/><br/>
-                            <span> Green: </span> <input id="green4" type="range" min="0" max="255" value="10"/><br/>
-                            <span> Blue: </span> <input id="blue4" type="range" min="0" max="255" value="120"/>
-                          </div>
-                          <hr/>
-                          <h3>Color 5</h3>
-                          <p id="editColor5Code"></p>
-                          <div id="editColor5" class="edit-color">
-                            <span> Red: </span> <input id="red5" type="range" min="0" max="255" value="0"/><br/>
-                            <span> Green: </span> <input id="green5" type="range" min="0" max="255" value="10"/><br/>
-                            <span> Blue: </span> <input id="blue5" type="range" min="0" max="255" value="120"/>
-                          </div>
-                          <hr/>
-                        </div>
-                        <div class="modal-footer">
-                          <button id="updatePalette" type="button" class="btn btn-primary btn-warning btn-block">Update this palette</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        </div>
+        <div id="editorInputWrap" class="editor-input-wrap">
+          <hr />
+          <h3>Color 1</h3>
+          <p id="editColor1Code"></p>
+          <div id="editColor1" class="edit-color">
+            <span> Red: </span> <input id="red1" type="range" min="0" max="255" value="0" /><br />
+            <span> Green: </span> <input id="green1" type="range" min="0" max="255" value="10" /><br />
+            <span> Blue: </span> <input id="blue1" type="range" min="0" max="255" value="120" />
+          </div>
+          <hr />
+          <h3>Color 2</h3>
+          <p id="editColor2Code"></p>
+          <div id="editColor2" class="edit-color">
+            <span> Red: </span> <input id="red2" type="range" min="0" max="255" value="0" /><br />
+            <span> Green: </span> <input id="green2" type="range" min="0" max="255" value="10" /><br />
+            <span> Blue: </span> <input id="blue2" type="range" min="0" max="255" value="120" />
+          </div>
+          <hr />
+          <h3>Color 3</h3>
+          <p id="editColor3Code"></p>
+          <div id="editColor3" class="edit-color">
+            <span> Red: </span> <input id="red3" type="range" min="0" max="255" value="0" /><br />
+            <span> Green: </span> <input id="green3" type="range" min="0" max="255" value="10" /><br />
+            <span> Blue: </span> <input id="blue3" type="range" min="0" max="255" value="120" />
+          </div>
+          <hr />
+          <h3>Color 4</h3>
+          <p id="editColor4Code"></p>
+          <div id="editColor4" class="edit-color">
+            <span> Red: </span> <input id="red4" type="range" min="0" max="255" value="0" /><br />
+            <span> Green: </span> <input id="green4" type="range" min="0" max="255" value="10" /><br />
+            <span> Blue: </span> <input id="blue4" type="range" min="0" max="255" value="120" />
+          </div>
+          <hr />
+          <h3>Color 5</h3>
+          <p id="editColor5Code"></p>
+          <div id="editColor5" class="edit-color">
+            <span> Red: </span> <input id="red5" type="range" min="0" max="255" value="0" /><br />
+            <span> Green: </span> <input id="green5" type="range" min="0" max="255" value="10" /><br />
+            <span> Blue: </span> <input id="blue5" type="range" min="0" max="255" value="120" />
+          </div>
+          <hr />
+        </div>
+        <div class="modal-footer">
+          <button id="updatePalette" type="button" class="btn btn-primary btn-warning btn-block">Update this
+            palette</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-    </body>
+</body>
+
 </html>
