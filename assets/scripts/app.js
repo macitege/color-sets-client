@@ -97,8 +97,5 @@ $(() => {
   })
 
   // // UNDO & REDO BUTTON
-  // $('#undoButton').on('click', () => {
-  //   colorGenerator.colorSetHEX['color1'] = colorGenerator.history[0][0]
-  // })
 
 })

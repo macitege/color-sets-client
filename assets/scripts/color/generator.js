@@ -36,6 +36,17 @@ function updateColors() {
 }
 
 function makeColors() {
+  for (let j = 0; j < history.length; j++) {
+    if (history[j][0] === colorSetHEX['color1'] &&
+      history[j][1] === colorSetHEX['color2'] &&
+      history[j][2] === colorSetHEX['color3'] &&
+      history[j][3] === colorSetHEX['color4'] &&
+      history[j][4] === colorSetHEX['color5']) {
+      if (j !== history.length - 1) {
+        history.splice(j + 1)
+      }
+    }
+  }
   for (let i = 1; i <= 5; i++) {
     // '#'+Math.floor(Math.random()*16777215).toString(16);
     let colorHEX = '#'
@@ -46,25 +57,13 @@ function makeColors() {
   }
 
   updateColors()
-  // ÖNCE HİSTORY DE BULUNDUĞUN YERDEN SONRAKİ ARRAY ELEMANLARINI SİL SONRA PUSH
-
-  for (let j = 0; j < history.length; j++) {
-    if (history[j][0] === colorSetHEX['color1'] &&
-      history[j][1] === colorSetHEX['color2'] &&
-      history[j][2] === colorSetHEX['color3'] &&
-      history[j][3] === colorSetHEX['color4'] &&
-      history[j][4] === colorSetHEX['color5']) {
-      return history.splice(j + 1)
-
-    }
-
-  }
 
   history.push(Object.values(colorSetHEX))
   if (history.length > 30) {
     history.shift()
   }
   console.log(history)
+
   rgbaMaker()
   $('#saveButton').attr('disabled', false)
 }
