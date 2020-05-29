@@ -96,7 +96,7 @@ $(() => {
     }, 2000)
   })
 
-  // // UNDO & REDO BUTTON
+  // UNDO BUTTON
   $('#undoButton').on('click', () => {
     for (let i = 1; i < colorGenerator.history.length; i++) {
       if (colorGenerator.history[i][0] === colorGenerator.colorSetHEX['color1'] &&
@@ -113,7 +113,8 @@ $(() => {
       }
     }
   })
-  
+
+  // REDO BUTTON
   $('#redoButton').on('click', () => {
     for (let i = 0; i < colorGenerator.history.length - 1; i++) {
       if (colorGenerator.history[i][0] === colorGenerator.colorSetHEX['color1'] &&
@@ -130,5 +131,4 @@ $(() => {
       }
     }
   })
-  
 })

@@ -22,7 +22,7 @@ const colorSetRGBA = {
   'color5': null
 }
 
-function updateColors () {
+function updateColors() {
   $('#first-color').css('background-color', colorSetHEX['color1'])
   $('#hexCode1').val(colorSetHEX['color1'])
   $('#second-color').css('background-color', colorSetHEX['color2'])
@@ -33,9 +33,10 @@ function updateColors () {
   $('#hexCode4').val(colorSetHEX['color4'])
   $('#fifth-color').css('background-color', colorSetHEX['color5'])
   $('#hexCode5').val(colorSetHEX['color5'])
+  rgbaMaker()
 }
 
-function makeColors () {
+function makeColors() {
   for (let j = 0; j < history.length; j++) {
     if (history[j][0] === colorSetHEX['color1'] &&
       history[j][1] === colorSetHEX['color2'] &&
@@ -55,19 +56,16 @@ function makeColors () {
     }
     colorSetHEX['color' + i] = colorHEX.toUpperCase()
   }
-
   updateColors()
-
   history.push(Object.values(colorSetHEX))
   if (history.length > 30) {
     history.shift()
   }
-
-  rgbaMaker()
+  
   $('#saveButton').attr('disabled', false)
 }
 
-function rgbaMaker () {
+function rgbaMaker() {
   const color1Parsed = []
   const color2Parsed = []
   const color3Parsed = []
@@ -95,6 +93,46 @@ function rgbaMaker () {
   colorSetRGBA['color3'] = 'rgba(' + parseInt(color3Parsed[0], 16) + ',' + parseInt(color3Parsed[1], 16) + ',' + parseInt(color3Parsed[2], 16) + ',1)'
   colorSetRGBA['color4'] = 'rgba(' + parseInt(color4Parsed[0], 16) + ',' + parseInt(color4Parsed[1], 16) + ',' + parseInt(color4Parsed[2], 16) + ',1)'
   colorSetRGBA['color5'] = 'rgba(' + parseInt(color5Parsed[0], 16) + ',' + parseInt(color5Parsed[1], 16) + ',' + parseInt(color5Parsed[2], 16) + ',1)'
+
+  const L1 = ((Math.max(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16)) + Math.min(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16))) / 510) * 100
+  const L2 = ((Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16)) + Math.min(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))) / 510) * 100
+  const L3 = ((Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16)) + Math.min(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))) / 510) * 100
+  const L4 = ((Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16)) + Math.min(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))) / 510) * 100
+  const L5 = ((Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16)) + Math.min(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))) / 510) * 100
+  const R1 = Math.max(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16))
+  const R2 = Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))
+  const R3 = Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))
+  const R4 = Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))
+  const R5 = Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))
+  codeLightness(L1, L2, L3, L4, L5, R1, R2, R3, R4, R5)
+}
+
+function codeLightness (L1, L2, L3, L4, L5, R1, R2, R3, R4, R5) {
+  if (L1 > 60 || R1 > 240) {
+    $('#hexCode1').css('color', 'black')
+  } else {
+    $('#hexCode1').css('color', 'white')
+  }
+  if (L2 > 60 || R2 > 240) {
+    $('#hexCode2').css('color', 'black')
+  } else {
+    $('#hexCode2').css('color', 'white')
+  }
+  if (L3 > 60 || R3 > 240) {
+    $('#hexCode3').css('color', 'black')
+  } else {
+    $('#hexCode3').css('color', 'white')
+  }
+  if (L4 > 60 || R4 > 240) {
+    $('#hexCode4').css('color', 'black')
+  } else {
+    $('#hexCode4').css('color', 'white')
+  }
+  if (L5 > 60 || R5 > 240) {
+    $('#hexCode5').css('color', 'black')
+  } else {
+    $('#hexCode5').css('color', 'white')
+  }
 }
 
 function prepareForAPI() {
@@ -199,6 +237,7 @@ const addHandlers = () => {
 }
 
 module.exports = {
+  rgbaMaker,
   updateColors,
   makeColors,
   prepareForAPI,

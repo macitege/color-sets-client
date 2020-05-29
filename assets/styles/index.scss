@@ -218,7 +218,7 @@ body {
 
     .hex-code {
       background: none;
-      opacity: 60%;
+      opacity: 70%;
       border-radius: 3px;
       text-align: center;
       border: none;
@@ -231,8 +231,7 @@ body {
     }
 
     .hex-code:hover {
-      opacity: 80%;
-      text-shadow: 0.5px 0.5px 4px rgba(0, 0, 0, 0.575);
+      opacity: 100%;
     }
   }
 }
