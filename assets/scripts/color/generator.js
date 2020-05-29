@@ -22,7 +22,7 @@ const colorSetRGBA = {
   'color5': null
 }
 
-function updateColors() {
+function updateColors () {
   $('#first-color').css('background-color', colorSetHEX['color1'])
   $('#hexCode1').val(colorSetHEX['color1'])
   $('#second-color').css('background-color', colorSetHEX['color2'])
@@ -35,7 +35,7 @@ function updateColors() {
   $('#hexCode5').val(colorSetHEX['color5'])
 }
 
-function makeColors() {
+function makeColors () {
   for (let j = 0; j < history.length; j++) {
     if (history[j][0] === colorSetHEX['color1'] &&
       history[j][1] === colorSetHEX['color2'] &&
@@ -62,49 +62,12 @@ function makeColors() {
   if (history.length > 30) {
     history.shift()
   }
-  console.log(history)
 
   rgbaMaker()
   $('#saveButton').attr('disabled', false)
 }
 
-$('#undoButton').on('click', () => {
-  for (let i = 1; i < history.length; i++) {
-    if (history[i][0] === colorSetHEX['color1'] &&
-      history[i][1] === colorSetHEX['color2'] &&
-      history[i][2] === colorSetHEX['color3'] &&
-      history[i][3] === colorSetHEX['color4'] &&
-      history[i][4] === colorSetHEX['color5']) {
-      colorSetHEX['color1'] = history[i - 1][0]
-      colorSetHEX['color2'] = history[i - 1][1]
-      colorSetHEX['color3'] = history[i - 1][2]
-      colorSetHEX['color4'] = history[i - 1][3]
-      colorSetHEX['color5'] = history[i - 1][4]
-      return updateColors()
-    }
-  }
-
-})
-
-$('#redoButton').on('click', () => {
-  for (let i = 0; i < history.length - 1; i++) {
-    if (history[i][0] === colorSetHEX['color1'] &&
-      history[i][1] === colorSetHEX['color2'] &&
-      history[i][2] === colorSetHEX['color3'] &&
-      history[i][3] === colorSetHEX['color4'] &&
-      history[i][4] === colorSetHEX['color5']) {
-      colorSetHEX['color1'] = history[i + 1][0]
-      colorSetHEX['color2'] = history[i + 1][1]
-      colorSetHEX['color3'] = history[i + 1][2]
-      colorSetHEX['color4'] = history[i + 1][3]
-      colorSetHEX['color5'] = history[i + 1][4]
-      return updateColors()
-    }
-  }
-
-})
-
-function rgbaMaker() {
+function rgbaMaker () {
   const color1Parsed = []
   const color2Parsed = []
   const color3Parsed = []
@@ -236,6 +199,7 @@ const addHandlers = () => {
 }
 
 module.exports = {
+  updateColors,
   makeColors,
   prepareForAPI,
   addHandlers,

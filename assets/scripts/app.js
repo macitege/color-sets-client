@@ -97,5 +97,38 @@ $(() => {
   })
 
   // // UNDO & REDO BUTTON
-
+  $('#undoButton').on('click', () => {
+    for (let i = 1; i < colorGenerator.history.length; i++) {
+      if (colorGenerator.history[i][0] === colorGenerator.colorSetHEX['color1'] &&
+        colorGenerator.history[i][1] === colorGenerator.colorSetHEX['color2'] &&
+        colorGenerator.history[i][2] === colorGenerator.colorSetHEX['color3'] &&
+        colorGenerator.history[i][3] === colorGenerator.colorSetHEX['color4'] &&
+        colorGenerator.history[i][4] === colorGenerator.colorSetHEX['color5']) {
+        colorGenerator.colorSetHEX['color1'] = colorGenerator.history[i - 1][0]
+        colorGenerator.colorSetHEX['color2'] = colorGenerator.history[i - 1][1]
+        colorGenerator.colorSetHEX['color3'] = colorGenerator.history[i - 1][2]
+        colorGenerator.colorSetHEX['color4'] = colorGenerator.history[i - 1][3]
+        colorGenerator.colorSetHEX['color5'] = colorGenerator.history[i - 1][4]
+        return colorGenerator.updateColors()
+      }
+    }
+  })
+  
+  $('#redoButton').on('click', () => {
+    for (let i = 0; i < colorGenerator.history.length - 1; i++) {
+      if (colorGenerator.history[i][0] === colorGenerator.colorSetHEX['color1'] &&
+        colorGenerator.history[i][1] === colorGenerator.colorSetHEX['color2'] &&
+        colorGenerator.history[i][2] === colorGenerator.colorSetHEX['color3'] &&
+        colorGenerator.history[i][3] === colorGenerator.colorSetHEX['color4'] &&
+        colorGenerator.history[i][4] === colorGenerator.colorSetHEX['color5']) {
+        colorGenerator.colorSetHEX['color1'] = colorGenerator.history[i + 1][0]
+        colorGenerator.colorSetHEX['color2'] = colorGenerator.history[i + 1][1]
+        colorGenerator.colorSetHEX['color3'] = colorGenerator.history[i + 1][2]
+        colorGenerator.colorSetHEX['color4'] = colorGenerator.history[i + 1][3]
+        colorGenerator.colorSetHEX['color5'] = colorGenerator.history[i + 1][4]
+        return colorGenerator.updateColors()
+      }
+    }
+  })
+  
 })
