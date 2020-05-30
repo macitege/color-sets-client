@@ -3,16 +3,11 @@
 const store = require('../store')
 
 // HISTORY HOLDS PREVIOUSLY GENERATED COLORS (MAX.30)
-const history = []
+let history = []
+let undoIndex
 // THE MOST RECENT COLOR SET GENERATED
 
-const colorSetHEX = {
-  'color1': null,
-  'color2': null,
-  'color3': null,
-  'color4': null,
-  'color5': null
-}
+let colorSetHEX
 
 const colorSetRGBA = {
   'color1': null,
@@ -22,31 +17,28 @@ const colorSetRGBA = {
   'color5': null
 }
 
-function updateColors() {
-  $('#first-color').css('background-color', colorSetHEX['color1'])
-  $('#hexCode1').val(colorSetHEX['color1'])
-  $('#second-color').css('background-color', colorSetHEX['color2'])
-  $('#hexCode2').val(colorSetHEX['color2'])
-  $('#third-color').css('background-color', colorSetHEX['color3'])
-  $('#hexCode3').val(colorSetHEX['color3'])
-  $('#fourth-color').css('background-color', colorSetHEX['color4'])
-  $('#hexCode4').val(colorSetHEX['color4'])
-  $('#fifth-color').css('background-color', colorSetHEX['color5'])
-  $('#hexCode5').val(colorSetHEX['color5'])
+function updateColors (newSet) {
+  colorSetHEX = newSet
+  $('#first-color').css('background-color', newSet['color1'])
+  $('#hexCode1').val(newSet['color1'])
+  $('#second-color').css('background-color', newSet['color2'])
+  $('#hexCode2').val(newSet['color2'])
+  $('#third-color').css('background-color', newSet['color3'])
+  $('#hexCode3').val(newSet['color3'])
+  $('#fourth-color').css('background-color', newSet['color4'])
+  $('#hexCode4').val(newSet['color4'])
+  $('#fifth-color').css('background-color', newSet['color5'])
+  $('#hexCode5').val(newSet['color5'])
   rgbaMaker()
 }
 
-function makeColors() {
-  for (let j = 0; j < history.length; j++) {
-    if (history[j][0] === colorSetHEX['color1'] &&
-      history[j][1] === colorSetHEX['color2'] &&
-      history[j][2] === colorSetHEX['color3'] &&
-      history[j][3] === colorSetHEX['color4'] &&
-      history[j][4] === colorSetHEX['color5']) {
-      if (j !== history.length - 1) {
-        history.splice(j + 1)
-      }
-    }
+function makeColors () {
+  const newColorSetHEX = {
+    color1: null,
+    color2: null,
+    color3: null,
+    color4: null,
+    color5: null
   }
   for (let i = 1; i <= 5; i++) {
     // '#'+Math.floor(Math.random()*16777215).toString(16);
@@ -54,18 +46,14 @@ function makeColors() {
     while (colorHEX.length < 7) {
       colorHEX += (Math.random()).toString(16).substr(-6)
     }
-    colorSetHEX['color' + i] = colorHEX.toUpperCase()
+    newColorSetHEX['color' + i] = colorHEX.toUpperCase()
   }
-  updateColors()
-  history.push(Object.values(colorSetHEX))
-  if (history.length > 30) {
-    history.shift()
-  }
-  
+  addToHistory(newColorSetHEX)
+  updateColors(newColorSetHEX)
   $('#saveButton').attr('disabled', false)
 }
 
-function rgbaMaker() {
+function rgbaMaker () {
   const color1Parsed = []
   const color2Parsed = []
   const color3Parsed = []
@@ -94,7 +82,16 @@ function rgbaMaker() {
   colorSetRGBA['color4'] = 'rgba(' + parseInt(color4Parsed[0], 16) + ',' + parseInt(color4Parsed[1], 16) + ',' + parseInt(color4Parsed[2], 16) + ',1)'
   colorSetRGBA['color5'] = 'rgba(' + parseInt(color5Parsed[0], 16) + ',' + parseInt(color5Parsed[1], 16) + ',' + parseInt(color5Parsed[2], 16) + ',1)'
 
-  const L1 = ((Math.max(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16)) + Math.min(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16))) / 510) * 100
+  const L1 = (
+    (Math.max(
+      parseInt(color1Parsed[0], 16),
+      parseInt(color1Parsed[1], 16),
+      parseInt(color1Parsed[2], 16)
+    ) + Math.min(
+      parseInt(color1Parsed[0], 16),
+      parseInt(color1Parsed[1], 16),
+      parseInt(color1Parsed[2], 16)
+    )) / 510) * 100
   const L2 = ((Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16)) + Math.min(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))) / 510) * 100
   const L3 = ((Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16)) + Math.min(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))) / 510) * 100
   const L4 = ((Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16)) + Math.min(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))) / 510) * 100
@@ -135,7 +132,7 @@ function codeLightness (L1, L2, L3, L4, L5, R1, R2, R3, R4, R5) {
   }
 }
 
-function prepareForAPI() {
+function prepareForAPI () {
   const data = {}
   data.color = {}
   data.color.hex = `${colorSetHEX['color1']}-${colorSetHEX['color2']}-${colorSetHEX['color3']}-${colorSetHEX['color4']}-${colorSetHEX['color5']}`
@@ -236,6 +233,30 @@ const addHandlers = () => {
   })
 }
 
+const undo = () => {
+  undoIndex = undoIndex === undefined ? history.length - 1 : undoIndex
+  if (undoIndex !== 0) undoIndex--
+  const previousSet = history[undoIndex]
+  updateColors(previousSet)
+}
+
+const redo = () => {
+  if (undoIndex !== history.length - 1) undoIndex++
+  const nextSet = history[undoIndex]
+  updateColors(nextSet)
+}
+
+function addToHistory (newSet) {
+  if (undoIndex !== undefined) {
+    history = history.slice(0, undoIndex + 1)
+    undoIndex = undefined
+  }
+  history.push(newSet)
+  if (history.length > 30) {
+    history.shift()
+  }
+}
+
 module.exports = {
   rgbaMaker,
   updateColors,
@@ -244,5 +265,6 @@ module.exports = {
   addHandlers,
   colorSetHEX,
   colorSetRGBA,
-  history
+  undo,
+  redo
 }
