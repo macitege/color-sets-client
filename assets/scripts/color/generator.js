@@ -19,16 +19,18 @@ const colorSetRGBA = {
 
 function updateColors (newSet) {
   colorSetHEX = newSet
-  $('#first-color').css('background-color', newSet['color1'])
-  $('#hexCode1').val(newSet['color1'])
-  $('#second-color').css('background-color', newSet['color2'])
-  $('#hexCode2').val(newSet['color2'])
-  $('#third-color').css('background-color', newSet['color3'])
-  $('#hexCode3').val(newSet['color3'])
-  $('#fourth-color').css('background-color', newSet['color4'])
-  $('#hexCode4').val(newSet['color4'])
-  $('#fifth-color').css('background-color', newSet['color5'])
-  $('#hexCode5').val(newSet['color5'])
+  const ids = [
+    '#first-color',
+    '#second-color',
+    '#third-color',
+    '#fourth-color',
+    '#fifth-color'
+  ]
+  ids.forEach((id, i) => {
+    const color = newSet[`color${i + 1}`]
+    $(id).css('background-color', color)
+    $(`#hexCode${i + 1}`).val(color)
+  })
   rgbaMaker()
 }
 
