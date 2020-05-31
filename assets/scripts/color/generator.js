@@ -56,54 +56,47 @@ function makeColors () {
 }
 
 function rgbaMaker () {
-  const color1Parsed = []
-  const color2Parsed = []
-  const color3Parsed = []
-  const color4Parsed = []
-  const color5Parsed = []
-  // "#45-45-45" -> 45
-  color1Parsed.push('0x' + colorSetHEX['color1'].toString().replace('#', '').slice(0, 2))
-  color1Parsed.push('0x' + colorSetHEX['color1'].toString().replace('#', '').slice(2, 4))
-  color1Parsed.push('0x' + colorSetHEX['color1'].toString().replace('#', '').slice(4, 6))
-  color2Parsed.push('0x' + colorSetHEX['color2'].toString().replace('#', '').slice(0, 2))
-  color2Parsed.push('0x' + colorSetHEX['color2'].toString().replace('#', '').slice(2, 4))
-  color2Parsed.push('0x' + colorSetHEX['color2'].toString().replace('#', '').slice(4, 6))
-  color3Parsed.push('0x' + colorSetHEX['color3'].toString().replace('#', '').slice(0, 2))
-  color3Parsed.push('0x' + colorSetHEX['color3'].toString().replace('#', '').slice(2, 4))
-  color3Parsed.push('0x' + colorSetHEX['color3'].toString().replace('#', '').slice(4, 6))
-  color4Parsed.push('0x' + colorSetHEX['color4'].toString().replace('#', '').slice(0, 2))
-  color4Parsed.push('0x' + colorSetHEX['color4'].toString().replace('#', '').slice(2, 4))
-  color4Parsed.push('0x' + colorSetHEX['color4'].toString().replace('#', '').slice(4, 6))
-  color5Parsed.push('0x' + colorSetHEX['color5'].toString().replace('#', '').slice(0, 2))
-  color5Parsed.push('0x' + colorSetHEX['color5'].toString().replace('#', '').slice(2, 4))
-  color5Parsed.push('0x' + colorSetHEX['color5'].toString().replace('#', '').slice(4, 6))
+  const rgbaSet = {
+    color1Parsed: [],
+    color2Parsed: [],
+    color3Parsed: [],
+    color4Parsed: [],
+    color5Parsed: []
+  }
 
-  colorSetRGBA['color1'] = 'rgba(' + parseInt(color1Parsed[0], 16) + ',' + parseInt(color1Parsed[1], 16) + ',' + parseInt(color1Parsed[2], 16) + ',1)'
-  colorSetRGBA['color2'] = 'rgba(' + parseInt(color2Parsed[0], 16) + ',' + parseInt(color2Parsed[1], 16) + ',' + parseInt(color2Parsed[2], 16) + ',1)'
-  colorSetRGBA['color3'] = 'rgba(' + parseInt(color3Parsed[0], 16) + ',' + parseInt(color3Parsed[1], 16) + ',' + parseInt(color3Parsed[2], 16) + ',1)'
-  colorSetRGBA['color4'] = 'rgba(' + parseInt(color4Parsed[0], 16) + ',' + parseInt(color4Parsed[1], 16) + ',' + parseInt(color4Parsed[2], 16) + ',1)'
-  colorSetRGBA['color5'] = 'rgba(' + parseInt(color5Parsed[0], 16) + ',' + parseInt(color5Parsed[1], 16) + ',' + parseInt(color5Parsed[2], 16) + ',1)'
+  for (let j = 1; j < 6; j++) {
+    for (let i = 0; i < 7; i += 2) {
+      const hexNum = '0x' + colorSetHEX[`color${j}`].toString().replace('#', '').slice(i, i + 2)
+      const rgbaNum = parseInt(hexNum, 16)
+      rgbaSet[`color${j}Parsed`].push(rgbaNum)
+    }
+  }
 
-  const L1 = (
-    (Math.max(
-      parseInt(color1Parsed[0], 16),
-      parseInt(color1Parsed[1], 16),
-      parseInt(color1Parsed[2], 16)
-    ) + Math.min(
-      parseInt(color1Parsed[0], 16),
-      parseInt(color1Parsed[1], 16),
-      parseInt(color1Parsed[2], 16)
-    )) / 510) * 100
-  const L2 = ((Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16)) + Math.min(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))) / 510) * 100
-  const L3 = ((Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16)) + Math.min(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))) / 510) * 100
-  const L4 = ((Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16)) + Math.min(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))) / 510) * 100
-  const L5 = ((Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16)) + Math.min(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))) / 510) * 100
-  const R1 = Math.max(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16))
-  const R2 = Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))
-  const R3 = Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))
-  const R4 = Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))
-  const R5 = Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))
-  codeLightness(L1, L2, L3, L4, L5, R1, R2, R3, R4, R5)
+// Object.keys(rgbaSet).map(key => {
+//   rgba[key]
+// })
+
+  // const L1 = (
+  //   (Math.max(
+  //     parseInt(rgbaSet.color1Parsed[0], 16),
+  //     parseInt(rgbaSet.color1Parsed[1], 16),
+  //     parseInt(rgbaSet.color1Parsed[2], 16)
+  //   ) + Math.min(
+  //     parseInt(rgbaSet.color1Parsed[0], 16),
+  //     parseInt(rgbaSet.color1Parsed[1], 16),
+  //     parseInt(rgbaSet.color1Parsed[2], 16)
+  //   )) / 510) * 100
+
+  // const L2 = ((Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16)) + Math.min(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))) / 510) * 100
+  // const L3 = ((Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16)) + Math.min(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))) / 510) * 100
+  // const L4 = ((Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16)) + Math.min(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))) / 510) * 100
+  // const L5 = ((Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16)) + Math.min(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))) / 510) * 100
+  // const R1 = Math.max(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16))
+  // const R2 = Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))
+  // const R3 = Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))
+  // const R4 = Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))
+  // const R5 = Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))
+  // codeLightness(L1, L2, L3, L4, L5, R1, R2, R3, R4, R5)
 }
 
 function codeLightness (L1, L2, L3, L4, L5, R1, R2, R3, R4, R5) {
