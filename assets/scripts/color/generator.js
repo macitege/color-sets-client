@@ -17,7 +17,7 @@ const colorSetRGBA = {
   'color5': null
 }
 
-function updateColors (newSet) {
+function updateColors(newSet) {
   colorSetHEX = newSet
   const ids = [
     '#first-color',
@@ -34,7 +34,7 @@ function updateColors (newSet) {
   rgbaMaker()
 }
 
-function makeColors () {
+function makeColors() {
   const newColorSetHEX = {
     color1: null,
     color2: null,
@@ -55,7 +55,7 @@ function makeColors () {
   $('#saveButton').attr('disabled', false)
 }
 
-function rgbaMaker () {
+function rgbaMaker() {
   const rgbaSet = {
     color1Parsed: [],
     color2Parsed: [],
@@ -72,58 +72,43 @@ function rgbaMaker () {
     }
   }
 
-// Object.keys(rgbaSet).map(key => {
-//   rgba[key]
-// })
-
-  // const L1 = (
-  //   (Math.max(
-  //     parseInt(rgbaSet.color1Parsed[0], 16),
-  //     parseInt(rgbaSet.color1Parsed[1], 16),
-  //     parseInt(rgbaSet.color1Parsed[2], 16)
-  //   ) + Math.min(
-  //     parseInt(rgbaSet.color1Parsed[0], 16),
-  //     parseInt(rgbaSet.color1Parsed[1], 16),
-  //     parseInt(rgbaSet.color1Parsed[2], 16)
-  //   )) / 510) * 100
-
-  // const L2 = ((Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16)) + Math.min(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))) / 510) * 100
-  // const L3 = ((Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16)) + Math.min(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))) / 510) * 100
-  // const L4 = ((Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16)) + Math.min(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))) / 510) * 100
-  // const L5 = ((Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16)) + Math.min(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))) / 510) * 100
-  // const R1 = Math.max(parseInt(color1Parsed[0], 16), parseInt(color1Parsed[1], 16), parseInt(color1Parsed[2], 16))
-  // const R2 = Math.max(parseInt(color2Parsed[0], 16), parseInt(color2Parsed[1], 16), parseInt(color2Parsed[2], 16))
-  // const R3 = Math.max(parseInt(color3Parsed[0], 16), parseInt(color3Parsed[1], 16), parseInt(color3Parsed[2], 16))
-  // const R4 = Math.max(parseInt(color4Parsed[0], 16), parseInt(color4Parsed[1], 16), parseInt(color4Parsed[2], 16))
-  // const R5 = Math.max(parseInt(color5Parsed[0], 16), parseInt(color5Parsed[1], 16), parseInt(color5Parsed[2], 16))
-  // codeLightness(L1, L2, L3, L4, L5, R1, R2, R3, R4, R5)
+  // Object.keys(rgbaSet).map(key => {
+  //   rgba[key]
+  // })
+  hexCodeConf(rgbaSet)
 }
 
-function codeLightness (L1, L2, L3, L4, L5, R1, R2, R3, R4, R5) {
-  if (L1 > 60 || R1 > 240) {
-    $('#hexCode1').css('color', 'black')
-  } else {
-    $('#hexCode1').css('color', 'white')
+function hexCodeConf (rgbaSet) {
+  const lSet = []
+  const rSet = []
+  for (let i = 1; i < 6; i++) {
+    const rgbMax = Math.max(
+      rgbaSet[`color${i}Parsed`][0],
+      rgbaSet[`color${i}Parsed`][1],
+      rgbaSet[`color${i}Parsed`][2]
+    )
+    const rgbMin = Math.min(
+      rgbaSet[`color${i}Parsed`][0],
+      rgbaSet[`color${i}Parsed`][1],
+      rgbaSet[`color${i}Parsed`][2]
+    )
+    const R = rgbMax
+    const L = ((rgbMax + rgbMin) / 510) * 100
+    lSet.push(L)
+    rSet.push(R)
   }
-  if (L2 > 60 || R2 > 240) {
-    $('#hexCode2').css('color', 'black')
-  } else {
-    $('#hexCode2').css('color', 'white')
-  }
-  if (L3 > 60 || R3 > 240) {
-    $('#hexCode3').css('color', 'black')
-  } else {
-    $('#hexCode3').css('color', 'white')
-  }
-  if (L4 > 60 || R4 > 240) {
-    $('#hexCode4').css('color', 'black')
-  } else {
-    $('#hexCode4').css('color', 'white')
-  }
-  if (L5 > 60 || R5 > 240) {
-    $('#hexCode5').css('color', 'black')
-  } else {
-    $('#hexCode5').css('color', 'white')
+
+  codeLightness(lSet, rSet)
+  console.log(lSet)
+}
+
+function codeLightness (lSet, rSet) {
+  for (let i = 0; i < 5; i++) {
+    if (lSet[i] > 60 || rSet[i] > 240) {
+      $(`#hexCode${i + 1}`).css('color', 'black')
+    } else {
+      $(`#hexCode${i + 1}`).css('color', 'white')
+    }
   }
 }
 
@@ -235,13 +220,14 @@ const undo = () => {
   updateColors(previousSet)
 }
 
-const redo = () => {
+const redo = () => { // İlk redo çalıştığında undoIndex undefined olduğu için hata alıyorduk. Bu şekilde çözüldü.
+  undoIndex = undoIndex === undefined ? history.length - 1 : undoIndex
   if (undoIndex !== history.length - 1) undoIndex++
   const nextSet = history[undoIndex]
   updateColors(nextSet)
 }
 
-function addToHistory (newSet) {
+function addToHistory(newSet) {
   if (undoIndex !== undefined) {
     history = history.slice(0, undoIndex + 1)
     undoIndex = undefined
