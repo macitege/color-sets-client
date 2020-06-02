@@ -65,20 +65,16 @@ function rgbaMaker() {
   }
 
   for (let j = 1; j < 6; j++) {
-    for (let i = 0; i < 7; i += 2) {
+    for (let i = 0; i < 5; i += 2) {
       const hexNum = '0x' + colorSetHEX[`color${j}`].toString().replace('#', '').slice(i, i + 2)
       const rgbaNum = parseInt(hexNum, 16)
       rgbaSet[`color${j}Parsed`].push(rgbaNum)
     }
   }
-
-  // Object.keys(rgbaSet).map(key => {
-  //   rgba[key]
-  // })
   hexCodeConf(rgbaSet)
 }
 
-function hexCodeConf (rgbaSet) {
+function hexCodeConf(rgbaSet) {
   const lSet = []
   const rSet = []
   for (let i = 1; i < 6; i++) {
@@ -97,12 +93,10 @@ function hexCodeConf (rgbaSet) {
     lSet.push(L)
     rSet.push(R)
   }
-
   codeLightness(lSet, rSet)
-  console.log(lSet)
 }
 
-function codeLightness (lSet, rSet) {
+function codeLightness(lSet, rSet) {
   for (let i = 0; i < 5; i++) {
     if (lSet[i] > 60 || rSet[i] > 240) {
       $(`#hexCode${i + 1}`).css('color', 'black')
@@ -112,7 +106,7 @@ function codeLightness (lSet, rSet) {
   }
 }
 
-function prepareForAPI () {
+function prepareForAPI() {
   const data = {}
   data.color = {}
   data.color.hex = `${colorSetHEX['color1']}-${colorSetHEX['color2']}-${colorSetHEX['color3']}-${colorSetHEX['color4']}-${colorSetHEX['color5']}`
@@ -123,61 +117,26 @@ function prepareForAPI () {
 }
 
 const liveEdit = () => {
-  const r1 = Number($('#red1').val())
-  const g1 = Number($('#green1').val())
-  const b1 = Number($('#blue1').val())
-  const r2 = Number($('#red2').val())
-  const g2 = Number($('#green2').val())
-  const b2 = Number($('#blue2').val())
-  const r3 = Number($('#red3').val())
-  const g3 = Number($('#green3').val())
-  const b3 = Number($('#blue3').val())
-  const r4 = Number($('#red4').val())
-  const g4 = Number($('#green4').val())
-  const b4 = Number($('#blue4').val())
-  const r5 = Number($('#red5').val())
-  const g5 = Number($('#green5').val())
-  const b5 = Number($('#blue5').val())
-
-  const r1HEX = r1.toString(16).length === 1 ? '0' + r1.toString(16) : r1.toString(16)
-  const g1HEX = g1.toString(16).length === 1 ? '0' + g1.toString(16) : g1.toString(16)
-  const b1HEX = b1.toString(16).length === 1 ? '0' + b1.toString(16) : b1.toString(16)
-  const r2HEX = r2.toString(16).length === 1 ? '0' + r2.toString(16) : r2.toString(16)
-  const g2HEX = g2.toString(16).length === 1 ? '0' + g2.toString(16) : g2.toString(16)
-  const b2HEX = b2.toString(16).length === 1 ? '0' + b2.toString(16) : b2.toString(16)
-  const r3HEX = r3.toString(16).length === 1 ? '0' + r3.toString(16) : r3.toString(16)
-  const g3HEX = g3.toString(16).length === 1 ? '0' + g3.toString(16) : g3.toString(16)
-  const b3HEX = b3.toString(16).length === 1 ? '0' + b3.toString(16) : b3.toString(16)
-  const r4HEX = r4.toString(16).length === 1 ? '0' + r4.toString(16) : r4.toString(16)
-  const g4HEX = g4.toString(16).length === 1 ? '0' + g4.toString(16) : g4.toString(16)
-  const b4HEX = b4.toString(16).length === 1 ? '0' + b4.toString(16) : b4.toString(16)
-  const r5HEX = r5.toString(16).length === 1 ? '0' + r5.toString(16) : r5.toString(16)
-  const g5HEX = g5.toString(16).length === 1 ? '0' + g5.toString(16) : g5.toString(16)
-  const b5HEX = b5.toString(16).length === 1 ? '0' + b5.toString(16) : b5.toString(16)
-
-  colorSetHEX['color1'] = ('#' + r1HEX + g1HEX + b1HEX).toUpperCase()
-  colorSetHEX['color2'] = ('#' + r2HEX + g2HEX + b2HEX).toUpperCase()
-  colorSetHEX['color3'] = ('#' + r3HEX + g3HEX + b3HEX).toUpperCase()
-  colorSetHEX['color4'] = ('#' + r4HEX + g4HEX + b4HEX).toUpperCase()
-  colorSetHEX['color5'] = ('#' + r5HEX + g5HEX + b5HEX).toUpperCase()
-
-  colorSetRGBA['color1'] = 'rgba(' + r1 + ',' + g1 + ',' + b1 + ',1)'
-  colorSetRGBA['color2'] = 'rgba(' + r2 + ',' + g2 + ',' + b2 + ',1)'
-  colorSetRGBA['color3'] = 'rgba(' + r3 + ',' + g3 + ',' + b3 + ',1)'
-  colorSetRGBA['color4'] = 'rgba(' + r4 + ',' + g4 + ',' + b4 + ',1)'
-  colorSetRGBA['color5'] = 'rgba(' + r5 + ',' + g5 + ',' + b5 + ',1)'
-
-  $('#editColor1').css('background-color', colorSetRGBA['color1'])
-  $('#editColor2').css('background-color', colorSetRGBA['color2'])
-  $('#editColor3').css('background-color', colorSetRGBA['color3'])
-  $('#editColor4').css('background-color', colorSetRGBA['color4'])
-  $('#editColor5').css('background-color', colorSetRGBA['color5'])
-
-  $('#editColor1Code').html(`<p>${colorSetRGBA['color1']}</p><p>${colorSetHEX['color1']}</p>`)
-  $('#editColor2Code').html(`<p>${colorSetRGBA['color2']}</p><p>${colorSetHEX['color2']}</p>`)
-  $('#editColor3Code').html(`<p>${colorSetRGBA['color3']}</p><p>${colorSetHEX['color3']}</p>`)
-  $('#editColor4Code').html(`<p>${colorSetRGBA['color4']}</p><p>${colorSetHEX['color4']}</p>`)
-  $('#editColor5Code').html(`<p>${colorSetRGBA['color5']}</p><p>${colorSetHEX['color5']}</p>`)
+  for (let i = 1; i < 6; i++) {
+    const rVal = Number($(`#red${i}`).val())
+    const gVal = Number($(`#green${i}`).val())
+    const bVal = Number($(`#blue${i}`).val())
+    const rHex = rVal.toString(16).length === 1 ?
+      '0' + rVal.toString(16) :
+      rVal.toString(16)
+    const gHex = gVal.toString(16).length === 1 ?
+      '0' + gVal.toString(16) :
+      gVal.toString(16)
+    const bHex = bVal.toString(16).length === 1 ?
+      '0' + bVal.toString(16) :
+      bVal.toString(16)
+    colorSetHEX[`color${i}`] = ('#' + rHex + gHex + bHex).toUpperCase()
+    colorSetRGBA[`color${i}`] = 'rgba(' + rVal + ',' + gVal + ',' + bVal + ',1)'
+    $(`#editColor${i}`).css('background-color', colorSetRGBA[`color${i}`])
+    const editedRGBA = colorSetRGBA[`color${i}`]
+    const editedHEX = colorSetHEX[`color${i}`]
+    $(`#editColor${i}Code`).html(`<p>${editedRGBA}</p><p>${editedHEX}</p>`)
+  }
 }
 
 const addHandlers = () => {
@@ -220,7 +179,7 @@ const undo = () => {
   updateColors(previousSet)
 }
 
-const redo = () => { // İlk redo çalıştığında undoIndex undefined olduğu için hata alıyorduk. Bu şekilde çözüldü.
+const redo = () => {
   undoIndex = undoIndex === undefined ? history.length - 1 : undoIndex
   if (undoIndex !== history.length - 1) undoIndex++
   const nextSet = history[undoIndex]

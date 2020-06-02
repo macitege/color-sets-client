@@ -3,7 +3,7 @@
 let apiUrl
 const apiUrls = {
   production: 'https://color-sets-api.herokuapp.com',
-  development: 'http://localhost:4741'
+  development: 'https://cors-anywhere.herokuapp.com/https://color-sets-api.herokuapp.com'
 }
 
 if (window.location.hostname === 'localhost') {
