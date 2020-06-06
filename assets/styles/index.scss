@@ -230,6 +230,14 @@ body {
       cursor: pointer;
     }
 
+    .color-names {
+      position: absolute;
+      margin-top: 35px;
+      font-size: 15px;
+      font-family: "Rubik", sans-serif;
+      opacity: 70%;
+    }
+
     .hex-code:hover {
       opacity: 100%;
     }
@@ -334,6 +342,10 @@ body {
       .hex-code {
         height: 30px;
         width: 100px;
+      }
+      
+      .color-names {
+        visibility: hidden;
       }
     }
   }

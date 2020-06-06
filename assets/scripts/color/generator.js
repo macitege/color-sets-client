@@ -32,6 +32,7 @@ function updateColors(newSet) {
     $(`#hexCode${i + 1}`).val(color)
   })
   rgbaMaker()
+  colorNameAPI(newSet)
 }
 
 function makeColors() {
@@ -100,8 +101,10 @@ function codeLightness(lSet, rSet) {
   for (let i = 0; i < 5; i++) {
     if (lSet[i] > 60 || rSet[i] > 240) {
       $(`#hexCode${i + 1}`).css('color', 'black')
+      $(`#colorName${i + 1}`).css('color', 'black')
     } else {
       $(`#hexCode${i + 1}`).css('color', 'white')
+      $(`#colorName${i + 1}`).css('color', 'white')
     }
   }
 }
@@ -114,6 +117,17 @@ function prepareForAPI() {
   data.color.hsla = 'undefined'
   data.color['user_id'] = store.user.id
   return data
+}
+
+function colorNameAPI (newSet) {
+  for (let i = 0; i < 5; i++) {
+    const setColors = Object.values(newSet)
+    const hex = (setColors[i]).replace('#', '')
+    $.ajax({
+      url: 'https://www.thecolorapi.com/id?hex=' + hex,
+      method: 'GET'
+    }).then(data => $(`#colorName${i + 1}`).text(data.name.value))
+  }
 }
 
 const liveEdit = () => {
