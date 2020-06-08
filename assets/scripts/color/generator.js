@@ -28,11 +28,11 @@ function updateColors(newSet) {
   ]
   ids.forEach((id, i) => {
     const color = newSet[`color${i + 1}`]
-    $(id).css('background-color', color)
-    $(`#hexCode${i + 1}`).val(color)
+    $(id).css('background-color', color.hex)
+    $(`#hexCode${i + 1}`).val(color.hex)
+    $(`#colorName${i + 1}`).text(color.name)
   })
   rgbaMaker()
-  colorNameAPI(newSet)
 }
 
 function makeColors() {
@@ -51,8 +51,8 @@ function makeColors() {
     }
     newColorSetHEX['color' + i] = colorHEX.toUpperCase()
   }
-  addToHistory(newColorSetHEX)
-  updateColors(newColorSetHEX)
+  const newSetWithNames = colorNameAPI(newColorSetHEX)
+  addToHistory(newSetWithNames)
   $('#saveButton').attr('disabled', false)
 }
 
@@ -64,10 +64,11 @@ function rgbaMaker() {
     color4Parsed: [],
     color5Parsed: []
   }
-
+  
   for (let j = 1; j < 6; j++) {
+    const color = colorSetHEX[`color${j}`]
     for (let i = 0; i < 5; i += 2) {
-      const hexNum = '0x' + colorSetHEX[`color${j}`].toString().replace('#', '').slice(i, i + 2)
+      const hexNum = '0x' + color.hex.toString().replace('#', '').slice(i, i + 2)
       const rgbaNum = parseInt(hexNum, 16)
       rgbaSet[`color${j}Parsed`].push(rgbaNum)
     }
@@ -119,15 +120,37 @@ function prepareForAPI() {
   return data
 }
 
-function colorNameAPI (newSet) {
+function colorNameAPI(newSet) {
+  const newSetWithNames = {
+    color1: {
+      hex: newSet.color1
+    },
+    color2: {
+      hex: newSet.color2
+    },
+    color3: {
+      hex: newSet.color3
+    },
+    color4: {
+      hex: newSet.color4
+    },
+    color5: {
+      hex: newSet.color5
+    }
+  }
+  const apiCalls = []
   for (let i = 0; i < 5; i++) {
     const setColors = Object.values(newSet)
     const hex = (setColors[i]).replace('#', '')
-    $.ajax({
-      url: 'https://www.thecolorapi.com/id?hex=' + hex,
-      method: 'GET'
-    }).then(data => $(`#colorName${i + 1}`).text(data.name.value))
+    apiCalls[i] = fetch('https://www.thecolorapi.com/id?hex=' + hex).then(r => r.json())
   }
+  Promise.all(apiCalls).then(colors => {
+    colors.forEach((color, i) => {
+      newSetWithNames[`color${i + 1}`].name = color.name.value
+    })
+    updateColors(newSetWithNames)
+  })
+  return newSetWithNames
 }
 
 const liveEdit = () => {
