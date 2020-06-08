@@ -36,22 +36,15 @@ function updateColors(newSet) {
 }
 
 function makeColors() {
-  const newColorSetHEX = {
-    color1: null,
-    color2: null,
-    color3: null,
-    color4: null,
-    color5: null
+  const primaryColor = {
+    hex: null
   }
-  for (let i = 1; i <= 5; i++) {
-    // '#'+Math.floor(Math.random()*16777215).toString(16);
-    let colorHEX = '#'
-    while (colorHEX.length < 7) {
-      colorHEX += (Math.random()).toString(16).substr(-6)
-    }
-    newColorSetHEX['color' + i] = colorHEX.toUpperCase()
+  let colorHEX = '#'
+  while (colorHEX.length < 7) {
+    colorHEX += (Math.random()).toString(16).substr(-6)
   }
-  const newSetWithNames = colorNameAPI(newColorSetHEX)
+  primaryColor.hex = colorHEX.toUpperCase()
+  const newSetWithNames = colorSchemeAPI(primaryColor)
   addToHistory(newSetWithNames)
   $('#saveButton').attr('disabled', false)
 }
@@ -64,7 +57,6 @@ function rgbaMaker() {
     color4Parsed: [],
     color5Parsed: []
   }
-  
   for (let j = 1; j < 6; j++) {
     const color = colorSetHEX[`color${j}`]
     for (let i = 0; i < 5; i += 2) {
@@ -74,6 +66,7 @@ function rgbaMaker() {
     }
   }
   hexCodeConf(rgbaSet)
+
 }
 
 function hexCodeConf(rgbaSet) {
@@ -113,43 +106,51 @@ function codeLightness(lSet, rSet) {
 function prepareForAPI() {
   const data = {}
   data.color = {}
-  data.color.hex = `${colorSetHEX['color1']}-${colorSetHEX['color2']}-${colorSetHEX['color3']}-${colorSetHEX['color4']}-${colorSetHEX['color5']}`
+  data.color.hex = `${colorSetHEX['color1'].hex}-${colorSetHEX['color2'].hex}-${colorSetHEX['color3'].hex}-${colorSetHEX['color4'].hex}-${colorSetHEX['color5'].hex}`
   data.color.rgba = `${colorSetRGBA['color1']}-${colorSetRGBA['color2']}-${colorSetRGBA['color3']}-${colorSetRGBA['color4']}-${colorSetRGBA['color5']}`
   data.color.hsla = 'undefined'
   data.color['user_id'] = store.user.id
   return data
 }
 
-function colorNameAPI(newSet) {
+function triad() {
+  return '&mode=triad'
+} 
+
+function quad() {
+  return '&mode=quad'
+}
+
+function complement() {
+  return '&mode=complement'
+}
+
+function monochrome() {
+  return '&mode=monochrome'
+}
+
+function analogic() {
+  return '&mode=analogic'
+}
+
+function colorSchemeAPI(primaryColor) {
   const newSetWithNames = {
-    color1: {
-      hex: newSet.color1
-    },
-    color2: {
-      hex: newSet.color2
-    },
-    color3: {
-      hex: newSet.color3
-    },
-    color4: {
-      hex: newSet.color4
-    },
-    color5: {
-      hex: newSet.color5
-    }
+    color1: {},
+    color2: {},
+    color3: {},
+    color4: {},
+    color5: {}
   }
-  const apiCalls = []
-  for (let i = 0; i < 5; i++) {
-    const setColors = Object.values(newSet)
-    const hex = (setColors[i]).replace('#', '')
-    apiCalls[i] = fetch('https://www.thecolorapi.com/id?hex=' + hex).then(r => r.json())
-  }
-  Promise.all(apiCalls).then(colors => {
-    colors.forEach((color, i) => {
-      newSetWithNames[`color${i + 1}`].name = color.name.value
+  const hex = primaryColor.hex.replace('#', '')
+  fetch(`https://www.thecolorapi.com/scheme?hex=${hex}${analogic()}`)
+    .then(r => r.json())
+    .then(colors => {
+      for (let i = 0; i < 5; i++) {
+        newSetWithNames[`color${i + 1}`].hex = colors.colors[i].hex.value
+        newSetWithNames[`color${i + 1}`].name = colors.colors[i].name.value
+      }
+      updateColors(newSetWithNames)
     })
-    updateColors(newSetWithNames)
-  })
   return newSetWithNames
 }
 
@@ -167,11 +168,11 @@ const liveEdit = () => {
     const bHex = bVal.toString(16).length === 1 ?
       '0' + bVal.toString(16) :
       bVal.toString(16)
-    colorSetHEX[`color${i}`] = ('#' + rHex + gHex + bHex).toUpperCase()
+    colorSetHEX[`color${i}`].hex = ('#' + rHex + gHex + bHex).toUpperCase()
     colorSetRGBA[`color${i}`] = 'rgba(' + rVal + ',' + gVal + ',' + bVal + ',1)'
     $(`#editColor${i}`).css('background-color', colorSetRGBA[`color${i}`])
     const editedRGBA = colorSetRGBA[`color${i}`]
-    const editedHEX = colorSetHEX[`color${i}`]
+    const editedHEX = colorSetHEX[`color${i}`].hex
     $(`#editColor${i}Code`).html(`<p>${editedRGBA}</p><p>${editedHEX}</p>`)
   }
 }

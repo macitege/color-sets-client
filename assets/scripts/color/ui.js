@@ -72,11 +72,11 @@ const onUpdateSuccess = () => {
   const g5 = Number($('#fifth-color').css('background-color').replace('rgb(', '').replace(')', '').split(',')[1]).toString(16)
   const b5 = Number($('#fifth-color').css('background-color').replace('rgb(', '').replace(')', '').split(',')[2]).toString(16)
 
-  colorGenerator.colorSetHEX['color1'] = '#' + r1 + g1 + b1
-  colorGenerator.colorSetHEX['color2'] = '#' + r2 + g2 + b2
-  colorGenerator.colorSetHEX['color3'] = '#' + r3 + g3 + b3
-  colorGenerator.colorSetHEX['color4'] = '#' + r4 + g4 + b4
-  colorGenerator.colorSetHEX['color5'] = '#' + r5 + g5 + b5
+  colorGenerator.colorSetHEX['color1'].hex = '#' + r1 + g1 + b1
+  colorGenerator.colorSetHEX['color2'].hex = '#' + r2 + g2 + b2
+  colorGenerator.colorSetHEX['color3'].hex = '#' + r3 + g3 + b3
+  colorGenerator.colorSetHEX['color4'].hex = '#' + r4 + g4 + b4
+  colorGenerator.colorSetHEX['color5'].hex = '#' + r5 + g5 + b5
 
   colorGenerator.colorSetRGBA['color1'] = $('#first-color').css('background-color')
   colorGenerator.colorSetRGBA['color2'] = $('#second-color').css('background-color')
