@@ -35,22 +35,128 @@ function updateColors(newSet) {
   rgbaMaker()
 }
 
-function makeColors() {
-  const newColorSetHEX = {
+const rnd = (min, max) => {
+  return Math.floor((Math.random() * ((max - min) + 1)) + min)
+}
+
+function monochromatic () {
+  const colorsHSL = {
+    color1: {
+      h: rnd(0, 360),
+      s: rnd(0, 100),
+      l: rnd(0, 100)
+    },
+    color2: {},
+    color3: {},
+    color4: {},
+    color5: {}
+  }
+  for (let i = 2; i < 6; i++) {
+    let maxH = colorsHSL.color1.h + 2
+    if (maxH > 360) {
+      maxH = 360
+    }
+    let maxS = colorsHSL.color1.s + 40
+    if (maxS > 100) {
+      maxS = 100
+    }
+    let maxL = colorsHSL.color1.l + 90
+    if (maxL > 100) {
+      maxL = 100
+    }
+    let minH = colorsHSL.color1.h - 2
+    if (minH < 0) {
+      minH = 0
+    }
+    let minS = colorsHSL.color1.s - 40
+    if (minS < 0) {
+      minS = 0
+    }
+    let minL = colorsHSL.color1.l - 90
+    if (minL < 0) {
+      minL = 0
+    }
+    const H = rnd(minH, maxH)
+    const S = rnd(minS, maxS)
+    const L = rnd(minL, maxL)
+
+    colorsHSL[`color${i}`].h = H
+    colorsHSL[`color${i}`].s = S
+    colorsHSL[`color${i}`].l = L
+  }
+  return hslToHex(colorsHSL)
+}
+
+function hslToHex (colorsHSL) {
+  const colorSet = {
     color1: null,
     color2: null,
     color3: null,
     color4: null,
     color5: null
   }
-  for (let i = 1; i <= 5; i++) {
-    // '#'+Math.floor(Math.random()*16777215).toString(16);
-    let colorHEX = '#'
-    while (colorHEX.length < 7) {
-      colorHEX += (Math.random()).toString(16).substr(-6)
+
+  for (let i = 1; i < 6; i++) {
+    const h = colorsHSL[`color${i}`].h
+    const s = colorsHSL[`color${i}`].s / 100
+    const l = colorsHSL[`color${i}`].l / 100
+
+    const c = (1 - Math.abs(2 * l - 1)) * s
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1))
+    const m = l - c / 2
+    let r = 0
+    let g = 0
+    let b = 0
+
+    if (h >= 0 && h < 60) {
+      r = c
+      g = x
+      b = 0
+    } else if (h >= 60 && h < 120) {
+      r = x
+      g = c
+      b = 0
+    } else if (h >= 120 && h < 180) {
+      r = 0
+      g = c
+      b = x
+    } else if (h >= 180 && h < 240) {
+      r = 0
+      g = x
+      b = c
+    } else if (h >= 240 && h < 300) {
+      r = x
+      g = 0
+      b = c
+    } else if (h >= 300 && h < 360) {
+      r = c
+      g = 0
+      b = x
     }
-    newColorSetHEX['color' + i] = colorHEX.toUpperCase()
+    r = Math.round((r + m) * 255).toString(16)
+    g = Math.round((g + m) * 255).toString(16)
+    b = Math.round((b + m) * 255).toString(16)
+    if (r.length === 1) {
+      r = '0' + r
+    }
+    if (g.length === 1) {
+      g = '0' + g
+    }
+    if (b.length === 1) {
+      b = '0' + b
+    }
+    colorSet[`color${i}`] = ('#' + r + g + b).toUpperCase()
   }
+  return colorSet
+}
+
+function colorHarmony() {
+  return monochromatic()
+}
+
+function makeColors() {
+  const newColorSetHEX = colorHarmony()
+
   const newSetWithNames = colorNameAPI(newColorSetHEX)
   addToHistory(newSetWithNames)
   $('#saveButton').attr('disabled', false)
@@ -64,7 +170,7 @@ function rgbaMaker() {
     color4Parsed: [],
     color5Parsed: []
   }
-  
+
   for (let j = 1; j < 6; j++) {
     const color = colorSetHEX[`color${j}`]
     for (let i = 0; i < 5; i += 2) {
