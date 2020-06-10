@@ -39,6 +39,60 @@ const rnd = (min, max) => {
   return Math.floor((Math.random() * ((max - min) + 1)) + min)
 }
 
+function complementary () {
+  const colorsHSL = {
+    color1: {
+      h: rnd(0, 360),
+      s: rnd(0, 100),
+      l: rnd(0, 100)
+    },
+    color2: {
+      h: null,
+      s: rnd(0, 100),
+      l: rnd(0, 100)
+    },
+    color3: {},
+    color4: {},
+    color5: {}
+  }
+  for (let i = 3; i < 6; i++) {
+    let j = Math.ceil((Math.random() * 2))
+    let maxH = colorsHSL[`color${j}`].h + 2
+    if (maxH > 360) {
+      maxH = 360
+    }
+    let maxS = colorsHSL[`color${j}`].s + 40
+    if (maxS > 100) {
+      maxS = 100
+    }
+    let maxL = colorsHSL[`color${j}`].l + 90
+    if (maxL > 100) {
+      maxL = 100
+    }
+    let minH = colorsHSL[`color${j}`].h - 2
+    if (minH < 0) {
+      minH = 0
+    }
+    let minS = colorsHSL[`color${j}`].s - 40
+    if (minS < 0) {
+      minS = 0
+    }
+    let minL = colorsHSL[`color${j}`].l - 90
+    if (minL < 0) {
+      minL = 0
+    }
+    const H = rnd(minH, maxH)
+    const S = rnd(minS, maxS)
+    const L = rnd(minL, maxL)
+
+    colorsHSL[`color${i}`].h = H
+    colorsHSL[`color${i}`].s = S
+    colorsHSL[`color${i}`].l = L
+  }
+  colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 180) - 360)
+  return hslToHex(colorsHSL)
+}
+
 function monochromatic () {
   const colorsHSL = {
     color1: {
@@ -151,7 +205,7 @@ function hslToHex (colorsHSL) {
 }
 
 function colorHarmony() {
-  return monochromatic()
+  return complementary()
 }
 
 function makeColors() {
