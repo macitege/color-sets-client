@@ -48,7 +48,7 @@ function complementary() {
     },
     color2: {
       h: null,
-      s: rnd(0, 100),
+      s: null,
       l: rnd(0, 100)
     },
     color3: {},
@@ -56,6 +56,8 @@ function complementary() {
     color5: {}
   }
   colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 180) - 360)
+  colorsHSL.color2.s = colorsHSL.color1.s
+  // colorsHSL.color2.l = colorsHSL.color1.l
   for (let i = 3; i < 6; i++) {
     const j = Math.ceil((Math.random() * 2))
     let maxH = colorsHSL[`color${j}`].h + 2
@@ -66,7 +68,7 @@ function complementary() {
     if (maxS > 100) {
       maxS = 100
     }
-    let maxL = colorsHSL[`color${j}`].l + 70
+    let maxL = colorsHSL[`color${j}`].l + 50
     if (maxL > 100) {
       maxL = 100
     }
@@ -78,7 +80,7 @@ function complementary() {
     if (minS < 0) {
       minS = 0
     }
-    let minL = colorsHSL[`color${j}`].l - 70
+    let minL = colorsHSL[`color${j}`].l - 50
     if (minL < 0) {
       minL = 0
     }
@@ -102,47 +104,45 @@ function analagous() {
     },
     color2: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color3: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color4: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color5: {}
   }
-  colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 30) - 360)
-  colorsHSL.color3.h = Math.abs((colorsHSL.color1.h + 60) - 360)
-  colorsHSL.color4.h = Math.abs((colorsHSL.color1.h + 90) - 360)
-  for (let i = 5; i < 6; i++) {
-    const j = Math.ceil((Math.random() * 4))
-    let maxH = colorsHSL[`color${j}`].h + 2
+
+  for (let i = 2; i < 6; i++) {
+    // const j = Math.ceil((Math.random() * 4))
+    let maxH = colorsHSL.color1.h + 2
     if (maxH > 360) {
       maxH = 360
     }
-    let maxS = colorsHSL[`color${j}`].s + 30
+    let maxS = colorsHSL.color1.s + 10
     if (maxS > 100) {
       maxS = 100
     }
-    let maxL = colorsHSL[`color${j}`].l + 70
+    let maxL = colorsHSL.color1.l + 30
     if (maxL > 100) {
       maxL = 100
     }
-    let minH = colorsHSL[`color${j}`].h - 2
+    let minH = colorsHSL.color1.h - 2
     if (minH < 0) {
       minH = 0
     }
-    let minS = colorsHSL[`color${j}`].s - 30
+    let minS = colorsHSL.color1.s - 10
     if (minS < 0) {
       minS = 0
     }
-    let minL = colorsHSL[`color${j}`].l - 70
+    let minL = colorsHSL.color1.l - 30
     if (minL < 0) {
       minL = 0
     }
@@ -153,6 +153,9 @@ function analagous() {
     colorsHSL[`color${i}`].s = S
     colorsHSL[`color${i}`].l = L
   }
+  colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 30) - 360)
+  colorsHSL.color3.h = Math.abs((colorsHSL.color1.h + 60) - 360)
+  colorsHSL.color4.h = Math.abs((colorsHSL.color1.h + 90) - 360)
   return hslToHex(colorsHSL)
 }
 
@@ -165,47 +168,45 @@ function tetradic() {
     },
     color2: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color3: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color4: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color5: {}
   }
-  colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 90) - 360)
-  colorsHSL.color3.h = Math.abs((colorsHSL.color1.h + 180) - 360)
-  colorsHSL.color4.h = Math.abs((colorsHSL.color1.h + 270) - 360)
-  for (let i = 5; i < 6; i++) {
-    const j = Math.ceil((Math.random() * 4))
-    let maxH = colorsHSL[`color${j}`].h + 2
+  
+  for (let i = 2; i < 6; i++) {
+    // const j = Math.ceil((Math.random() * 4))
+    let maxH = colorsHSL.color1.h + 2
     if (maxH > 360) {
       maxH = 360
     }
-    let maxS = colorsHSL[`color${j}`].s + 30
+    let maxS = colorsHSL.color1.s + 10
     if (maxS > 100) {
       maxS = 100
     }
-    let maxL = colorsHSL[`color${j}`].l + 70
+    let maxL = colorsHSL.color1.l + 40
     if (maxL > 100) {
       maxL = 100
     }
-    let minH = colorsHSL[`color${j}`].h - 2
+    let minH = colorsHSL.color1.h - 2
     if (minH < 0) {
       minH = 0
     }
-    let minS = colorsHSL[`color${j}`].s - 30
+    let minS = colorsHSL.color1.s - 10
     if (minS < 0) {
       minS = 0
     }
-    let minL = colorsHSL[`color${j}`].l - 70
+    let minL = colorsHSL.color1.l - 40
     if (minL < 0) {
       minL = 0
     }
@@ -216,6 +217,9 @@ function tetradic() {
     colorsHSL[`color${i}`].s = S
     colorsHSL[`color${i}`].l = L
   }
+  colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 90) - 360)
+  colorsHSL.color3.h = Math.abs((colorsHSL.color1.h + 180) - 360)
+  colorsHSL.color4.h = Math.abs((colorsHSL.color1.h + 270) - 360)
   return hslToHex(colorsHSL)
 }
 
@@ -228,42 +232,41 @@ function triadic() {
     },
     color2: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color3: {
       h: null,
-      s: rnd(0, 100),
-      l: rnd(0, 100)
+      s: null,
+      l: null
     },
     color4: {},
     color5: {}
   }
-  colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 120) - 360)
-  colorsHSL.color3.h = Math.abs((colorsHSL.color1.h + 240) - 360)
-  for (let i = 4; i < 6; i++) {
-    const j = Math.ceil((Math.random() * 3))
-    let maxH = colorsHSL[`color${j}`].h + 2
+
+  for (let i = 2; i < 6; i++) {
+    // const j = Math.ceil((Math.random() * 3))
+    let maxH = colorsHSL.color1.h + 2
     if (maxH > 360) {
       maxH = 360
     }
-    let maxS = colorsHSL[`color${j}`].s + 30
+    let maxS = colorsHSL.color1.s + 10
     if (maxS > 100) {
       maxS = 100
     }
-    let maxL = colorsHSL[`color${j}`].l + 70
+    let maxL = colorsHSL.color1.l + 40
     if (maxL > 100) {
       maxL = 100
     }
-    let minH = colorsHSL[`color${j}`].h - 2
+    let minH = colorsHSL.color1.h - 2
     if (minH < 0) {
       minH = 0
     }
-    let minS = colorsHSL[`color${j}`].s - 30
+    let minS = colorsHSL.color1.s - 10
     if (minS < 0) {
       minS = 0
     }
-    let minL = colorsHSL[`color${j}`].l - 70
+    let minL = colorsHSL.color1.l - 40
     if (minL < 0) {
       minL = 0
     }
@@ -274,6 +277,8 @@ function triadic() {
     colorsHSL[`color${i}`].s = S
     colorsHSL[`color${i}`].l = L
   }
+  colorsHSL.color2.h = Math.abs((colorsHSL.color1.h + 120) - 360)
+  colorsHSL.color3.h = Math.abs((colorsHSL.color1.h + 240) - 360)
   return hslToHex(colorsHSL)
 }
 
@@ -305,11 +310,11 @@ function splitComplementary() {
     if (maxH > 360) {
       maxH = 360
     }
-    let maxS = colorsHSL[`color${j}`].s + 30
+    let maxS = colorsHSL[`color${j}`].s + 20
     if (maxS > 100) {
       maxS = 100
     }
-    let maxL = colorsHSL[`color${j}`].l + 70
+    let maxL = colorsHSL[`color${j}`].l + 40
     if (maxL > 100) {
       maxL = 100
     }
@@ -317,11 +322,11 @@ function splitComplementary() {
     if (minH < 0) {
       minH = 0
     }
-    let minS = colorsHSL[`color${j}`].s - 30
+    let minS = colorsHSL[`color${j}`].s - 20
     if (minS < 0) {
       minS = 0
     }
-    let minL = colorsHSL[`color${j}`].l - 70
+    let minL = colorsHSL[`color${j}`].l - 40
     if (minL < 0) {
       minL = 0
     }
@@ -447,12 +452,13 @@ function hslToHex(colorsHSL) {
 }
 
 function colorHarmony() {
-  return monochromatic()
+  const methods = [complementary(), analagous(), tetradic(), triadic(), splitComplementary(), monochromatic()]
+  const i = Math.floor(Math.random() * 6)
+  return methods[i]
 }
 
 function makeColors() {
   const newColorSetHEX = colorHarmony()
-
   const newSetWithNames = colorNameAPI(newColorSetHEX)
   addToHistory(newSetWithNames)
   $('#saveButton').attr('disabled', false)
