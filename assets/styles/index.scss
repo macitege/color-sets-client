@@ -224,10 +224,18 @@ body {
       border: none;
       height: calc(calc(12vw) / 5);
       width: calc(calc(500%) / 7);
-      z-index: 999;
+      z-index: 1;
       color: rgb(255, 255, 255);
       font-family: "Rubik", sans-serif;
       cursor: pointer;
+    }
+
+    .color-names {
+      position: absolute;
+      margin-top: 35px;
+      font-size: 15px;
+      font-family: "Rubik", sans-serif;
+      opacity: 70%;
     }
 
     .hex-code:hover {
@@ -334,6 +342,10 @@ body {
       .hex-code {
         height: 30px;
         width: 100px;
+      }
+      
+      .color-names {
+        visibility: hidden;
       }
     }
   }
